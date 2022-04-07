@@ -1,0 +1,10 @@
+@import "../../../scss/variables.scss";
+
+.home-block {
+  margin-left: 50px;
+  margin-right: 50px;
+  @media screen and (max-width: 1024px) {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+}

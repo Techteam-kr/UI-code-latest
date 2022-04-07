@@ -1,0 +1,154 @@
+[
+  {
+    "id": "1",
+    "name": "Pradhan Mantri Awas Yojana",
+    "description": "The Mission addresses urban housing shortage among the EWS/LIG and MIG categories including the slum dwellers by ensuring a pucca house to all eligible urban households by the year 2022, when Nation completes 75 years of its Independence",
+    "implementedBy": "Ministry of Housing and Urban Affairs",
+    "category": [
+      "Housing"
+    ],
+    "age": [
+      "All"
+    ],
+    "gender": [
+      "All"
+    ],
+    "disability": [
+      "No"
+    ],
+    "eligibility": [
+      "The Applicant’s Family must not own a house in any part of the country",
+      "In the case of a Married couple, either a Single or a Joint ownership deal is allowed, and both options will receive just one subsidy",
+      "The Applicant’s Family must not have availed the benefit of any housing-related schemes set up by the Government of India"
+    ],
+    "centralScheme": "true",
+    "stateScheme": "false",
+    "link": "https://pmaymis.gov.in/"
+  },
+  {
+    "id": "2",
+    "name": "Pradhan Mantri Vaya Vandana Yojana",
+    "description": "Launched by the GOI to protect elderly persons aged 60 years and above against a future fall in their interest income due to uncertain market conditions, as also to provide social security during old age. The scheme is implemented through the Life Insurance Corporation of India (LIC) and open for subscription upto 31st March, 2023.",
+    "implementedBy": " ",
+    "category": [
+      "Pension"
+    ],
+    "age": [
+      "60+"
+    ],
+    "gender": [
+      "All"
+    ],
+    "disability": [
+      "No"
+    ],
+    "eligibility": [
+      "Elderly persons aged 60 years and above"
+    ],
+    "centralScheme": "true",
+    "stateScheme": "false",
+    "link": "https://licindia.in/Products/Pension-Plans/Pradhan-Mantri-Vaya-Vandana-Yojana1"
+  },
+  {
+    "id": "3",
+    "name": "Rashtriya Vayoshri Yojana (RVY)",
+    "description": "Launched in 2017 by the Ministry of Social Justice & Empowerment of Government of India .  This scheme for providing Physical Aids and Assisted-living Devices for Senior citizens belonging to BPL category. This is a Central Sector Scheme, fully funded by the Central Government. The expenditure for implementation of the scheme will be met from the 'Senior Citizens' Welfare Fund'",
+    "implementedBy": "Ministry of Social Justice & Empowerment ",
+    "category": [
+      "Pension",
+      "Disability"
+    ],
+    "age": [
+      "60+"
+    ],
+    "gender": [
+      "All"
+    ],
+    "disability": [
+      "Yes"
+    ],
+    "eligibility": [
+      "Senior Citizens, belonging to BPL category and suffering from any of the age related disability/infirmity viz. Low vision, Hearing impairment, Loss of teeth and Locomotor disability will be provided with such assisted-living devices which can restore near normalcy in their bodily functions, overcoming the disability/infirmity manifested. The Scheme is expected to benefit all Senior Citizens across the country. "
+    ],
+    "centralScheme": "true",
+    "stateScheme": "false",
+    "link": "https://www.india.gov.in/spotlight/rashtriya-vayoshri-yojana"
+  },
+  {
+    "id": "4",
+    "name": "Monthly Pension scheme for older person",
+    "description": "In this Scheme Rs. 400/- is given as monthly pension to needy elderly persons to maintained themselves",
+    "implementedBy": "Ministry of Social Justice & Empowerment ",
+    "category": [
+      "Pension"
+    ],
+    "age": [
+      "60+"
+    ],
+    "gender": [
+      "All"
+    ],
+    "disability": [
+      "No"
+    ],
+    "eligibility": [
+      "He / She should be 65 years or more in age",
+      "The combined annual income of the proposed pensioner and his or her spouse shall not exceed Rs.20,000/- as certified by the local revenue authority"
+    ],
+    "centralScheme": "false",
+    "stateScheme": "true",
+    "link": "https://sevasindhu.karnataka.gov.in/"
+  },
+  {
+    "id": "5",
+    "name": "Sandhya Surkasha Scheme",
+    "description": "The purpose of the scheme to provide some relief to the age to providing financial assistance in the form of social security pension.  Person will get monthly amount from Govt. of Karnataka ",
+    "implementedBy": "Ministry of Social Justice & Empowerment ",
+    "category": [
+      "Pension"
+    ],
+    "age": [
+      "65+"
+    ],
+    "gender": [
+      "All"
+    ],
+    "disability": [
+      "No"
+    ],
+    "eligibility": [
+      "He / She should be 65 years or more in age.",
+      "he combined annual income of the proposed pensioner and his or her spouse shall not exceed Rs.20,000/- as certified by the local revenue authority.",
+      "If the income is declared by beneficiary himself / herself, the income of Adult children will not be counted for calculation of the income of the proposed social security pensioner",
+      "The total value of combined deposits held by the pensioner and his spouse shall not exceeding Rs.10,000/-.",
+      "Such of the persons availing of old age pension, Destitute widow pension or physically handicapped pension or any other form of pension from public or private sources are not eligible for this scheme."
+    ],
+    "centralScheme": "false",
+    "stateScheme": "true",
+    "link": "www.sevasindhu.karnataka.gov.in"
+  },
+  {
+    "id": "6",
+    "name": "Manaswini Yojana",
+    "description": "The objective of Manaswini Scheme is to protect poor unmarried, separated and divorced women in rural areas who suffer from social taboo without any freedom to participate in the socio-economic development of Karnataka.Poor women usually lack economic support from their respective families. Taking this into consideration these aspects and to lend a helping hand for their sustenance, Government of Karnataka launched Manaswini scheme",
+    "implementedBy": " ",
+    "category": [
+      "Women&Children"
+    ],
+    "age": [
+      "40-64"
+    ],
+    "gender": [
+      "Women"
+    ],
+    "disability": [
+      "No"
+    ],
+    "eligibility": [
+      "Women from BPL family aged above 40 to 64 years"
+    ],
+    "centralScheme": "false",
+    "stateScheme": "true",
+    "link": "https://sevasindhu.karnataka.gov.in/"
+  }
+]

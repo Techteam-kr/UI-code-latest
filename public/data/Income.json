@@ -1,0 +1,22 @@
+[
+    {
+        "label": "Below 10,000",
+        "value": "Below 10,000",
+        "key": "10-20"
+    },
+    {
+        "label": "Below 20,000",
+        "value": "Below 20,000",
+        "key": 2
+    },
+    {
+        "label": "Below 12,000 (Rural)",
+        "value": "Below 12,000 (Rural)",
+        "key": 3
+    },
+    {
+        "label": "Below 17,000 (Urban)",
+        "value": "Below 17,000 (Urban)",
+        "key": 4
+    }
+]
