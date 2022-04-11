@@ -1,0 +1,26 @@
+{
+    "id": "1",
+    "name": "Pradhan Mantri Awas Yojana",
+    "description": "The Mission addresses urban housing shortage among the EWS/LIG and MIG categories including the slum dwellers by ensuring a pucca house to all eligible urban households by the year 2022, when Nation completes 75 years of its Independence",
+    "implementedBy": "Ministry of Housing and Urban Affairs",
+    "category": [
+        "Housing"
+    ],
+    "age": [
+        "All"
+    ],
+    "gender": [
+        "All"
+    ],
+    "disability": [
+        "No"
+    ],
+    "eligibility": [
+        "The Applicant’s Family must not own a house in any part of the country",
+        "In the case of a Married couple, either a Single or a Joint ownership deal is allowed, and both options will receive just one subsidy",
+        "The Applicant’s Family must not have availed the benefit of any housing-related schemes set up by the Government of India"
+    ],
+    "centralScheme": "true",
+    "stateScheme": "false",
+    "link": "https://pmaymis.gov.in/"
+}

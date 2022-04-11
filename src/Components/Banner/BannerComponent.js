@@ -1,12 +1,8 @@
 import "./BannerComponent.scss";
-const BannerComponent = () => {
+const BannerComponent = ({ src }) => {
   return (
     <div className="banner-block">
-      <img
-        className="banner-img"
-        src="static/images/banner-image.png"
-        alt="logo"
-      />
+      <img className="banner-img" src={src} alt="logo" />
     </div>
   );
 };

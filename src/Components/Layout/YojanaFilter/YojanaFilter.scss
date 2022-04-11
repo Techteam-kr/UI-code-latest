@@ -11,7 +11,7 @@
   }
   .div-formik {
     padding: 0 70px;
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 1024px) {
       padding: 0 35px;
     }
     .floating-input {
@@ -35,6 +35,9 @@
           font-weight: 700;
         }
         .dropdown-menu {
+          .btn-group-sm {
+            display: none;
+          }
           .btn-group {
             width: 100%;
             .actions-btn {
@@ -56,6 +59,15 @@
     }
     .action-field {
       text-align: center;
+      display: flex;
+      justify-content: space-between;
+      width: 105%;
+    margin-left: -2.5%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    @media screen and (min-width: 768px)  {
+      justify-content: center;
+    }
       .primary-orange {
         background: $orange 0% 0% no-repeat padding-box;
         border: 1px solid $orange;
@@ -64,12 +76,19 @@
         svg {
           fill: $white-color;
         }
+        @media screen and (max-width: 767px) {
+          width: 80%;
+        }
       }
       button:disabled {
         opacity: 0.5;
       }
       .btn {
         margin: 20px 30px;
+        @media screen and (max-width: 767px) {
+         margin: 10px;
+         padding: 10px;
+        }
       }
     }
   }

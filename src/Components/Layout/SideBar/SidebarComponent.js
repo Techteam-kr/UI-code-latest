@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 import "./SidebarComponent.scss";
-const SideBarComponent = () => {
+const SideBarComponent = ({ navigateToHome }) => {
   const [sideBarOpen, setsideBarOpen] = useState(false);
   const openMenuHandler = () => {
     setsideBarOpen((sideBarOpen) => !sideBarOpen);
@@ -26,13 +26,21 @@ const SideBarComponent = () => {
         <NavLink onClick={openMenuHandler} to="/reports">
           Reports
         </NavLink>
-        <NavLink to="/register">
+        {/* <NavLink to="/register">
           <Button className="primary-orange">User Enrollment</Button>
-        </NavLink>
+        </NavLink> */}
       </div>
       <span className="hambergur-menu" onClick={openMenuHandler}>
         &#9776;{" "}
       </span>
+      <span className="logo-block" onClick={navigateToHome}>
+        <img
+          className="logo-img"
+          src="static/images/govt-symbol.png"
+          alt="logo"
+        />
+      </span>
+      <Button className="primary-orange">User Enrollment</Button>
     </>
   );
 };

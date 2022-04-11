@@ -1,13 +1,39 @@
 import Card from "react-bootstrap/Card";
 import "./YojanaCardComponent.scss";
-// import YojanaList from "../../../../public/data/MasterYojanaJSON.json";
 import { Button, Col, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import _isFunction from "lodash/isFunction";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import YojanaCard from "./YojanaCard";
+// import { Pagination } from "../Pagination/Pagination";
+import { sortBy } from "lodash";
+import Pagination from "../Pagination/Pagination";
+
+let sortByOptions = [
+  { key: "title", label: "title" },
+  { key: "yojanaCreated", label: "Recently added Yojana" },
+];
+const pageSizeOptions = [
+  { key: 3, label: "3" },
+  { key: 6, label: "6" },
+  { key: 9, label: "9" },
+  { key: 12, label: "12" },
+];
 
 const YojanaCardComponent = () => {
   const [YojanaList, setYojanaList] = useState([]);
+  const [sortPaging, setSortPaging] = useState({
+    sortBy: "title",
+    pageSize: 3,
+    activePage: 0,
+  });
+  const navigator = useNavigate();
+  let { sortBy, pageSize, activePage } = sortPaging;
+
   useEffect(() => {
+    const offset = activePage * pageSize;
+    let [sort, direction = "asc"] = sortBy;
     getDefaultYojana();
   }, []);
   const getDefaultYojana = () => {
@@ -15,87 +41,47 @@ const YojanaCardComponent = () => {
       setYojanaList(res.data);
     });
   };
+  const yojanaClickHandler = (yojana) => {
+    navigator("yojana-detail", {
+      search: `?${yojana.id}`,
+      state: { yojanaId: yojana.id, title: yojana.name },
+    });
+  };
+  const onPaginationChange = (pagination, isBottom) => {
+    console.log("triggered");
+    if (_isFunction(onChangeSortPaging)) {
+      onChangeSortPaging({ ...pagination });
+    }
+  };
+  const onChangeSortPaging = (data) => {
+    setSortPaging({ ...data });
+  };
+  const PaginationEle = ({ bottom }) => (
+    <div className="sort-block">
+      <Pagination
+        total={20}
+        pageSize={pageSize}
+        active={activePage}
+        sortBy={sortBy}
+        onChange={(args) => onPaginationChange(args, bottom)}
+        sortByOptions={sortByOptions}
+        pageSizeOptions={pageSizeOptions}
+      />
+    </div>
+  );
   return (
     <div className="yojana-card-component">
       <div className="yojana-card-block">
+        <PaginationEle />
         <Row>
           {YojanaList &&
             YojanaList.map((yojana) => (
               <Col xs={12} sm={6} className="single-card">
-                <Card className="Yojana-card">
-                  <Card.Body>
-                    <Card.Title>{yojana.name}</Card.Title>
-                    <Card.Text>
-                      <h6>Criteria</h6>
-                      <div className="criteria-block">
-                        <Row>
-                          {yojana.category && (
-                            <Col sm={3} className="criteria-label max-space">
-                              <label>Categories</label> :{" "}
-                              <span
-                                className="yojana-data"
-                                title={yojana.category}
-                              >
-                                {yojana.category}
-                              </span>
-                            </Col>
-                          )}
-                          {yojana.age && (
-                            <Col sm={3} className="criteria-label">
-                              <label>Age</label> :{" "}
-                              <span className="yojana-data">{yojana.age}</span>
-                            </Col>
-                          )}
-                          {yojana.gender && (
-                            <Col sm={3} className="criteria-label">
-                              <label>Gender</label> :{" "}
-                              <span className="yojana-data">
-                                {yojana.gender}
-                              </span>
-                            </Col>
-                          )}
-                          {yojana.annual && (
-                            <Col sm={3} className="criteria-label">
-                              <label>Annual Income</label> :{" "}
-                              <span className="yojana-data">
-                                {yojana.annual}
-                              </span>
-                            </Col>
-                          )}
-                          {yojana.disability && (
-                            <Col sm={3} className="criteria-label">
-                              <label>Disablility</label> :{" "}
-                              <span className="yojana-data">
-                                {yojana.disability}
-                              </span>
-                            </Col>
-                          )}
-                          {yojana.caste && (
-                            <Col sm={3} className="criteria-label">
-                              <label>Catse</label> :{" "}
-                              <span className="yojana-data">
-                                {yojana.caste}
-                              </span>
-                            </Col>
-                          )}
-                        </Row>
-                        <Row>
-                          <Col xs={12} className="criteria-label full-width">
-                            <span className="yojana-data yojana-desc">
-                              <label>Description</label> :{" "}
-                              {yojana.description ? yojana.description : "NA"}
-                            </span>
-                          </Col>
-                        </Row>
-                      </div>
-                    </Card.Text>
-                    <Card.Footer>
-                      <Button className="navigate-yojana">
-                        Click here to know more{" "}
-                      </Button>
-                    </Card.Footer>
-                  </Card.Body>
-                </Card>
+                <YojanaCard
+                  label={"Criteria"}
+                  yojana={yojana}
+                  yojanaClickHandler={yojanaClickHandler}
+                />
               </Col>
             ))}
         </Row>

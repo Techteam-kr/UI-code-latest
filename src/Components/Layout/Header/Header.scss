@@ -11,6 +11,7 @@ header {
     justify-content: space-between;
     margin: 0px auto;
     width: 75vw;
+    height: 80px;
     @media screen and (max-width: 1024px) {
       width: 85vw;
     }
@@ -23,6 +24,12 @@ header {
     > nav {
       margin-top: 20px;
       width: 100%;
+      @media screen and (min-width: 768px) and (max-width: 1024px) {
+        .list-n {
+          width: 105%;
+        }
+        
+      }
     }
     .cart-login-container {
       position: relative;
@@ -31,8 +38,9 @@ header {
   nav {
     display: inline-block;
     .list-n {
-      padding: 0px;
-      padding-left: revert;
+      // padding: 10px;
+      // padding-left: revert;
+      // display: fl;
       li {
         padding: 0px 15px;
         margin: 0px;
@@ -60,10 +68,11 @@ header {
           //transition: width .3s;
         }
         .primary-orange {
-          background: $orange 0% 0% no-repeat padding-box;
-          border: 1px solid $orange;
+          background: $active-blue 0% 0% no-repeat padding-box;
+          border: 1px solid $active-blue;
           border-radius: 28px;
           opacity: 1;
+          margin: 10px;
         }
         .primary-orange::after {
           content: " \003E";
@@ -78,6 +87,17 @@ header {
       li:hover {
         a {
           color: $active-blue;
+        }
+      }
+      li:last-child {
+        a:hover::after {
+          width: 0;
+        }
+      }
+      .enrollment-block {
+        a {
+          display: inline-flex;
+
         }
       }
       .primary-orange-block {

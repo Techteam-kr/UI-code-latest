@@ -7,7 +7,7 @@ const HomeComponent = () => {
   return (
     <div className="home-block">
       {/* <Container> */}
-      <BannerComponent />
+      <BannerComponent src="static/images/banner-image.png" />
       <YojanaFilterComponent />
       <YojanaCardComponent />
       {/* </Container> */}

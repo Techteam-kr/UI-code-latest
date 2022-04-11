@@ -1,33 +1,50 @@
 @import "../../../scss/variables.scss";
 
-.search-box {
+.auto-complete-search {
   position: relative;
-  input {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+      @media screen and (max-width: 767px) {
+      width: 100%;
+      max-width: 100%;
+      margin:  0;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      max-width: 75%;
+    }
+  .bdHMCv > .wrapper {
     box-shadow: 0px 3px 6px $box-shadow-drop;
     border: 3px solid $active-blue;
     border-radius: 15px;
-    opacity: 1;
-    font-weight: 700;
-    color: $active-blue;
-    width: 50%;
-    height: 55px;
-    max-width: 800px;
-    padding: 10px;
-    font-size: 14px;
-    @media screen and (max-width: 767px) {
-      width: 100%;
-      margin: 20px 0;
-    }
+    z-index: 2;
   }
+  // input {
+  //   box-shadow: 0px 3px 6px $box-shadow-drop;
+  //   border: 3px solid $active-blue;
+  //   border-radius: 15px;
+  //   opacity: 1;
+  //   font-weight: 700;
+  //   color: $active-blue;
+  //   width: 50%;
+  //   height: 55px;
+  //   max-width: 800px;
+  //   padding: 10px;
+  //   font-size: 14px;
+  //   @media screen and (max-width: 767px) {
+  //     width: 100%;
+  //     margin: 20px 0;
+  //   }
+  // }
   svg {
     font-size: 24px;
     height: 30px;
     width: 40px;
-    margin-left: -88px;
+    // margin-left: -88px;
     fill: $active-blue;
     cursor: pointer;
     @media screen and (max-width: 767px) {
-      margin-left: -44px;
+      // margin-left: -44px;
     }
   }
 }

@@ -27,7 +27,11 @@ export const MultiSelectField = ({
     }
   };
   return (
-    <Form.Group controlId={name} className={`floating-input ${className}`}>
+    <Form.Group
+      controlId={name}
+      className={`floating-input ${className}`}
+      ref={ref}
+    >
       <Form.Label>{label}</Form.Label>
 
       {options.length && (

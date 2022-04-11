@@ -13,10 +13,12 @@ import axios from "axios";
 import SearchBoxComponent from "../../Common/SearchBoxComponent/SearchBoxComponent";
 import { preventEvent } from "../../../utils/helper";
 const YojanaFilterComponent = (props) => {
-  const [CategoryOptions, setCategoryOptions] = useState([]);
+  const [CategoryOptions, setCategoryOptions] = useState([
+    { key: "No category available", label: "No category available" },
+  ]);
   const [AgeGroup, setAgeGroup] = useState([]);
   const [Gender, setGender] = useState([]);
-  const ref = useRef(null);
+  const multiselectRefTracker = useRef(null);
   const {
     values,
     touched,
@@ -27,6 +29,7 @@ const YojanaFilterComponent = (props) => {
     setValues,
     setFieldValue,
     formikProps,
+    resetForm,
   } = props;
   const disablilityOption = [
     { value: "no", label: "No" },
@@ -38,14 +41,18 @@ const YojanaFilterComponent = (props) => {
   }, []);
 
   const getInitialData = () => {
-    axios.get("./data/Category.json").then((res) => {
-      const categories = _map(res.data?.categories, (item) => ({
-        key: item,
-        label: item,
-      }));
-      console.log(categories, "categories");
-      setCategoryOptions(categories);
-    });
+    axios
+      .get("http://52.88.137.206:9001/category")
+      .then((res) => {
+        const categories = _map(res.data?.categories, (item) => ({
+          key: item,
+          label: item,
+        }));
+        setCategoryOptions(categories);
+      })
+      .catch((error) => {
+        console.log(error, "error");
+      });
     axios.get("./data/Age.json").then((res) => {
       setAgeGroup(res.data);
     });
@@ -54,9 +61,18 @@ const YojanaFilterComponent = (props) => {
     });
   };
 
-  const resetFunction = () => {
+  const resetFunction = (e) => {
+    resetForm();
+    setCategoryOptions({ key: "Select", label: "Select" });
+    axios.get("./data/Category.json").then((res) => {
+      const categories = _map(res.data?.categories, (item) => ({
+        key: item,
+        label: item,
+      }));
+      setCategoryOptions(categories);
+    });
     // multiselectRefTracker.current.resetSelectedValues();
-    console.log(values, "values", ref);
+    // console.log(values, "values", ref);
     // setCategoryOptions([]);
   };
 
@@ -64,14 +80,14 @@ const YojanaFilterComponent = (props) => {
     <div className="filter-block">
       <h3>JANA YOJANA</h3>
       <div className="div-formik">
-        <FormikForm noValidate>
+        <FormikForm noValidate autoComplete="off">
           <Row>
             <Col
               sm={
                 window.innerWidth > 1280
                   ? "3"
                   : window.innerWidth <= 1280 && window.innerWidth > 767
-                  ? "4"
+                  ? "3"
                   : window.innerWidth < 767 && "12"
               }
             >
@@ -82,6 +98,7 @@ const YojanaFilterComponent = (props) => {
                 component={MultiSelectField}
                 name="category"
                 options={CategoryOptions}
+                ref={multiselectRefTracker}
               />
             </Col>
             <Col
@@ -89,7 +106,7 @@ const YojanaFilterComponent = (props) => {
                 window.innerWidth > 1280
                   ? "3"
                   : window.innerWidth <= 1280 && window.innerWidth > 767
-                  ? "4"
+                  ? "3"
                   : window.innerWidth < 767 && "12"
               }
             >
@@ -108,7 +125,7 @@ const YojanaFilterComponent = (props) => {
                 window.innerWidth > 1280
                   ? "3"
                   : window.innerWidth <= 1280 && window.innerWidth > 767
-                  ? "4"
+                  ? "3"
                   : window.innerWidth < 767 && "12"
               }
             >
@@ -127,7 +144,7 @@ const YojanaFilterComponent = (props) => {
                 window.innerWidth > 1280
                   ? "3"
                   : window.innerWidth <= 1280 && window.innerWidth > 767
-                  ? "4"
+                  ? "3"
                   : window.innerWidth < 767 && "12"
               }
             >
@@ -151,7 +168,11 @@ const YojanaFilterComponent = (props) => {
               />
             </Button>
 
-            <Button className="primary-orange" onClick={resetFunction}>
+            <Button
+              className="primary-orange"
+              type="button"
+              onClick={(e) => resetFunction(e)}
+            >
               Reset Filter{" "}
               <SVG
                 cacheRequests={true}
@@ -181,7 +202,21 @@ export default withFormik({
   },
 
   handleSubmit: (values, { props, ...formikProps }) => {
+    const { age } = values;
+    let value = age.split("-");
+    let ageLowerLimit = value[0];
+    let ageHigherLimit = value[1];
     // formikProps.resetForm();
-    console.log(values, "value");
+    let filterRequest = values;
+    filterRequest[ageLowerLimit] = value[0];
+    filterRequest[ageHigherLimit] = value[1];
+    axios
+      .post("http://localhost:9000/filteredYojanas", filterRequest)
+      .then((response) => {
+        console.log(response, "response");
+      })
+      .catch((error) => {
+        console.log(error, "error");
+      });
   },
 })(YojanaFilterComponent);

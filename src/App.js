@@ -10,6 +10,7 @@ import {
 import DashboardComponent from "./Components/Dashboard/Dashboard";
 import HomeComponent from "./Components/Layout/Home/HomeComponent";
 import ReportComponent from "./Components/Reports/Reports";
+import YojanaDetailComponent from "./Components/Layout/YojanaDetail/YojanaDetailComponent";
 
 function App() {
   return (
@@ -19,6 +20,11 @@ function App() {
         <Route exact path="/" element={<HomeComponent />} />
         <Route exact path="/dashboard" element={<DashboardComponent />} />
         <Route exact path="/reports" element={<ReportComponent />} />
+        <Route
+          exact
+          path="/yojana-detail"
+          element={<YojanaDetailComponent />}
+        />
         <Route path="/" render={() => <Navigate to="/" />} />
       </Routes>
     </Router>

@@ -1,0 +1,106 @@
+@import "../../../scss/variables.scss";
+.pagination-container {
+    height: 50px;
+    display: flex;
+    font-size: 14px;
+    font-weight: bold;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 16px 0 8px;
+    justify-content: space-between;
+    box-shadow: 0px 2px 5px 2px $box-shadow-drop;
+    margin: 30px 0;
+    p{
+        font-size: 14px;
+        margin-bottom: 0;
+        padding: 8px 10px;
+        margin-right: 29px;
+    }
+    .pagination {
+        font-weight: normal;
+        margin: 0 10px 0 10px;
+        .page-item {
+            .page-link {
+                margin: 0;
+                padding: 0;
+                width: 31px;
+                height: 33px;
+                line-height: 33px;
+                text-align: center;
+                span {
+                    display: block;
+                    margin-top: -2px;
+                }
+            }
+            &.active .page-link {
+                z-index: 0;
+                border-color: $active-blue;
+                background-color: $active-blue;
+            }
+        }
+    }
+    .form-group {
+        margin-bottom: 0;
+        &.floating-input {
+            margin-top: -5px;
+            .form-control {
+                appearance: none;
+            }
+            .form-label {
+                font-size: 10px;
+            }
+            svg {
+                height: 20px;
+                width: 15px;
+                position: absolute;
+                top: 15px;
+                right: 8px;
+                fill: $active-blue;
+            }
+        }
+    }
+    .select-icon {
+        pointer-events: none;
+    }
+    .page-size-select {
+        min-width: 120px;
+        &.floating-input {
+            position: relative;
+            .form-control {
+                appearance: none;
+            }
+            .form-label {
+                font-size: 10px;
+                position: absolute;
+                top: -6px;
+                left: 12px;
+                background: $white-color;
+                padding: 0 5px;
+            }
+            svg {
+                height: 31px;
+                width: 30px;
+                position: absolute;
+                top: 4px;
+                right: 8px;
+                fill: $active-blue;
+            }
+        }
+    }
+    @media screen and (max-device-width: 767px) {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 0 10px 10px;
+        justify-content: space-evenly;
+        p {
+            width: 100%;
+            margin: 0 0 6px;
+            text-align: center;
+        }
+        .pagination {
+            width: 100%;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+    }
+}
