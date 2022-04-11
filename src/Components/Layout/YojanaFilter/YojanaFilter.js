@@ -206,10 +206,9 @@ export default withFormik({
     let value = age.split("-");
     let ageLowerLimit = value[0];
     let ageHigherLimit = value[1];
-    // formikProps.resetForm();
     let filterRequest = values;
-    filterRequest[ageLowerLimit] = value[0];
-    filterRequest[ageHigherLimit] = value[1];
+    filterRequest.ageLowerLimit = value[0];
+    filterRequest.ageHigherLimit = value[1];
     axios
       .post("http://localhost:9000/filteredYojanas", filterRequest)
       .then((response) => {
