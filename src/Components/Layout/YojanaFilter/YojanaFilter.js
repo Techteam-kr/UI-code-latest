@@ -1,21 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Form as FormikForm, Field, withFormik } from "formik";
-import * as Yup from "yup";
 import _map from "lodash/map";
 import _isEmpty from "lodash/isEmpty";
 import "./YojanaFilter.scss";
 import { Button, Col, Row } from "react-bootstrap";
 import { MultiSelectField, SelectField } from "../../Common/FormFikComponent";
-
+import { getAgeTypes, getCategory, getGenderTypes } from "../../../utils/api";
 import SVG from "react-inlinesvg";
-import axios from "axios";
-
 import SearchBoxComponent from "../../Common/SearchBoxComponent/SearchBoxComponent";
-import { preventEvent } from "../../../utils/helper";
 const YojanaFilterComponent = (props) => {
-  const [CategoryOptions, setCategoryOptions] = useState([
-    { key: "No category available", label: "No category available" },
-  ]);
+  const [CategoryOptions, setCategoryOptions] = useState([]);
   const [AgeGroup, setAgeGroup] = useState([]);
   const [Gender, setGender] = useState([]);
   const multiselectRefTracker = useRef(null);
@@ -41,8 +35,7 @@ const YojanaFilterComponent = (props) => {
   }, []);
 
   const getInitialData = () => {
-    axios
-      .get("http://52.88.137.206:9001/category")
+    getCategory()
       .then((res) => {
         const categories = _map(res.data?.categories, (item) => ({
           key: item,
@@ -53,10 +46,10 @@ const YojanaFilterComponent = (props) => {
       .catch((error) => {
         console.log(error, "error");
       });
-    axios.get("./data/Age.json").then((res) => {
+    getAgeTypes().then((res) => {
       setAgeGroup(res.data);
     });
-    axios.get("./data/Gender.json").then((res) => {
+    getGenderTypes().then((res) => {
       setGender(res.data);
     });
   };
@@ -64,16 +57,13 @@ const YojanaFilterComponent = (props) => {
   const resetFunction = (e) => {
     resetForm();
     setCategoryOptions({ key: "Select", label: "Select" });
-    axios.get("./data/Category.json").then((res) => {
+    getCategory().then((res) => {
       const categories = _map(res.data?.categories, (item) => ({
         key: item,
         label: item,
       }));
       setCategoryOptions(categories);
     });
-    // multiselectRefTracker.current.resetSelectedValues();
-    // console.log(values, "values", ref);
-    // setCategoryOptions([]);
   };
 
   return (
@@ -96,7 +86,7 @@ const YojanaFilterComponent = (props) => {
                 label="1.Select Category"
                 placeholder="Select one or more Category"
                 component={MultiSelectField}
-                name="category"
+                name="categories"
                 options={CategoryOptions}
                 ref={multiselectRefTracker}
               />
@@ -151,7 +141,7 @@ const YojanaFilterComponent = (props) => {
               <Field
                 className="select-field"
                 component={SelectField}
-                name="disablility"
+                name="disability"
                 label="4.Is There Disablility"
                 placeholder="Select"
                 options={disablilityOption}
@@ -188,16 +178,16 @@ const YojanaFilterComponent = (props) => {
 };
 export default withFormik({
   mapPropsToValues: ({
-    category = [],
+    categories = [],
     age = "",
     gender = "",
-    disablility = "",
+    disability = "",
   }) => {
     return {
-      category,
+      categories,
       age,
       gender,
-      disablility,
+      disability,
     };
   },
 
@@ -208,14 +198,18 @@ export default withFormik({
     let ageHigherLimit = value[1];
     let filterRequest = values;
     filterRequest.ageLowerLimit = value[0];
-    filterRequest.ageHigherLimit = value[1];
-    axios
-      .post("http://localhost:9000/filteredYojanas", filterRequest)
-      .then((response) => {
-        console.log(response, "response");
-      })
-      .catch((error) => {
-        console.log(error, "error");
-      });
+    filterRequest.ageHigherLimit = value[1] ? value[1] : "";
+    let allEmpty = Object.keys(filterRequest).every((key) => {
+      return filterRequest[key].length === 0 || filterRequest[key] === "";
+    });
+    if (allEmpty) {
+      filterRequest.categories = [
+        "Housing",
+        "Pension",
+        "Women & Children",
+        "BPL",
+      ];
+    }
+    props.getDefaultYojana(filterRequest);
   },
 })(YojanaFilterComponent);

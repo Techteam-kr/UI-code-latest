@@ -15,12 +15,18 @@ header {
     @media screen and (max-width: 1024px) {
       width: 85vw;
     }
-    .logo-img {
-      background-color: $background-grey;
-      width: 130px;
-      display: inline-block;
-      cursor: pointer;
+    .logo-block {
+      display: flex;
+      .logo-img {
+        background-color: $background-grey;
+        width: max-content;
+        display: inline-block;
+        cursor: pointer;
+        margin-left:5px ;
+        margin-right:5px ;
+      }
     }
+   
     > nav {
       margin-top: 20px;
       width: 100%;

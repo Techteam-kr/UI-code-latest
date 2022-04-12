@@ -52,7 +52,7 @@ const YojanaCard = ({ yojana, yojanaClickHandler, label, enrollment }) => {
               <Col xs={12} className="criteria-label full-width">
                 <span className="yojana-data yojana-desc">
                   <label>Description</label> :{" "}
-                  {yojana.description ? yojana.description : "NA"}
+                  {yojana.shortDescription ? yojana.shortDescription : "NA"}
                 </span>
               </Col>
             </Row>

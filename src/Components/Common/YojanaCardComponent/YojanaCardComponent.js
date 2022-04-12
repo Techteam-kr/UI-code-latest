@@ -21,8 +21,7 @@ const pageSizeOptions = [
   { key: 12, label: "12" },
 ];
 
-const YojanaCardComponent = () => {
-  const [YojanaList, setYojanaList] = useState([]);
+const YojanaCardComponent = ({ YojanaList }) => {
   const [sortPaging, setSortPaging] = useState({
     sortBy: "title",
     pageSize: 3,
@@ -34,13 +33,8 @@ const YojanaCardComponent = () => {
   useEffect(() => {
     const offset = activePage * pageSize;
     let [sort, direction = "asc"] = sortBy;
-    getDefaultYojana();
   }, []);
-  const getDefaultYojana = () => {
-    axios.get("./data/MasterYojanaJSON.json").then((res) => {
-      setYojanaList(res.data);
-    });
-  };
+
   const yojanaClickHandler = (yojana) => {
     navigator("yojana-detail", {
       search: `?${yojana.id}`,
@@ -48,7 +42,6 @@ const YojanaCardComponent = () => {
     });
   };
   const onPaginationChange = (pagination, isBottom) => {
-    console.log("triggered");
     if (_isFunction(onChangeSortPaging)) {
       onChangeSortPaging({ ...pagination });
     }
@@ -59,7 +52,7 @@ const YojanaCardComponent = () => {
   const PaginationEle = ({ bottom }) => (
     <div className="sort-block">
       <Pagination
-        total={20}
+        total={YojanaList?.length}
         pageSize={pageSize}
         active={activePage}
         sortBy={sortBy}

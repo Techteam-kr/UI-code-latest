@@ -33,6 +33,9 @@
                 strong {
                     color: $active-blue;
                 }
+                @media screen and (max-width: 767px) {
+                    text-align: center;
+                }
             }
             .eligible-block {
             

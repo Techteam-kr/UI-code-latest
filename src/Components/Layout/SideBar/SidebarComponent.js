@@ -1,7 +1,7 @@
 import react, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-
+import SVG from "react-inlinesvg";
 import "./SidebarComponent.scss";
 const SideBarComponent = ({ navigateToHome }) => {
   const [sideBarOpen, setsideBarOpen] = useState(false);
@@ -26,9 +26,6 @@ const SideBarComponent = ({ navigateToHome }) => {
         <NavLink onClick={openMenuHandler} to="/reports">
           Reports
         </NavLink>
-        {/* <NavLink to="/register">
-          <Button className="primary-orange">User Enrollment</Button>
-        </NavLink> */}
       </div>
       <span className="hambergur-menu" onClick={openMenuHandler}>
         &#9776;{" "}
@@ -36,11 +33,21 @@ const SideBarComponent = ({ navigateToHome }) => {
       <span className="logo-block" onClick={navigateToHome}>
         <img
           className="logo-img"
+          src="static/images/central-logo.png"
+          alt="logo"
+        />
+        <img
+          className="logo-img"
           src="static/images/govt-symbol.png"
           alt="logo"
         />
       </span>
-      <Button className="primary-orange">User Enrollment</Button>
+      <Button className="primary-orange">
+        <SVG
+          cacheRequests={true}
+          src={`/static/svg/person_add_alt_white_24dp.svg`}
+        />
+      </Button>
     </>
   );
 };

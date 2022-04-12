@@ -51,14 +51,18 @@
   float: right;
   margin: 20px;
 }
-.logo-img {
-  height: 60px;
-  width: 70px;
-  margin-left: auto;
-  margin-right: auto;
-  vertical-align: top;
-  margin-top: 10px;
+.logo-block {
+  display: inline;
+  .logo-img {
+    height: 60px;
+    width: 70px;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: top;
+    margin-top: 10px;
+  }
 }
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;

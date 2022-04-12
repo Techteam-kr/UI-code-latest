@@ -18,7 +18,12 @@ const Header = () => {
           <div className="logo-block" onClick={navigateToHome}>
             <img
               className="logo-img"
-              src="static/images/karnataka_govt_logo1.png"
+              src="static/images/central-logo.png"
+              alt="logo"
+            />
+            <img
+              className="logo-img"
+              src="static/images/govt-symbol.png"
               alt="logo"
             />
           </div>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import _map from "lodash/map";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { fetchYojanaNames } from "../../../utils/api";
 // import {yojanaList} from '../../../utils/'
 const SearchBoxComponent = () => {
   const [yojanaNames, setYojanaNames] = useState([]);
@@ -13,8 +14,8 @@ const SearchBoxComponent = () => {
   }, []);
 
   const getYojanaNamesList = () => {
-    axios.get("./data/yojanaList.json").then((res) => {
-      const yojanas = _map(res.data?.yojanaName, (item, index) => ({
+    fetchYojanaNames().then((res) => {
+      const yojanas = _map(res.data?.names, (item, index) => ({
         id: index,
         name: item,
       }));
