@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, div, Row } from "react-bootstrap";
+import { Button, Card, Col, div, NavLink, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import BannerComponent from "../../Banner/BannerComponent";
 import YojanaCard from "../../Common/YojanaCardComponent/YojanaCard";
@@ -45,6 +45,18 @@ const YojanaDetailComponent = () => {
               </ul>
             </>
           )}
+          {YojanaCategory?.link && (
+            <>
+              <a
+                className="page-link"
+                href={YojanaCategory?.link}
+                target="blank"
+              >
+                {YojanaCategory?.link}
+              </a>
+            </>
+          )}
+
           {YojanaCategory?.implementedBy && (
             <div className="rt-aln">
               <span>

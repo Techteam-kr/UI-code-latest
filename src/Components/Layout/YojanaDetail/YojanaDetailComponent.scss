@@ -24,6 +24,10 @@
                     -webkit-line-clamp: initial;
                 }
             }
+            .page-link {
+                color: $active-blue;
+                text-decoration: underline;
+            }
             .rt-aln {
                 text-align: right;
                 padding: 20px 0;
@@ -38,6 +42,7 @@
                 }
             }
             .eligible-block {
+                margin-top: 10px;
             
                .Yojana-card {
                    border: 0px;
