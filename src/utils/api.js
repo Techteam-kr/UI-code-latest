@@ -18,5 +18,5 @@ export const fetchYojanaNames = () => axios.get(devserver + "/listofYojanas");
 export const searchYojanas = (params) =>
   axios.post(devserver + "/searchYojanas", params);
 export const yojanaForm = (params) =>
-  axios.get(devserver + "/saveform", params);
+  axios.post(devserver + "/saveform", params);
 // export const searchYojanas = () => axios.get("./data/YojanaDetail.json");

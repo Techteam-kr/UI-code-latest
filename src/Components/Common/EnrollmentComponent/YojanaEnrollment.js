@@ -86,7 +86,7 @@ const YojanaEnrollment = ({
         <Modal.Body>
           {display ? (
             <div>
-              You have successfully enrolled for {YojanaName} Please fine
+              You have successfully enrolled for {YojanaName} Please find
               reference id <strong>"12345678"</strong>
             </div>
           ) : (
