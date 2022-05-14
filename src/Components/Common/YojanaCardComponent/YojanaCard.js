@@ -1,6 +1,13 @@
 import { Card, div, Row, Button, Col } from "react-bootstrap";
+import YojanaEnrollment from "../EnrollmentComponent/YojanaEnrollment";
 import "./YojanaCard.scss";
-const YojanaCard = ({ yojana, yojanaClickHandler, label, enrollment }) => {
+const YojanaCard = ({
+  yojana,
+  yojanaClickHandler,
+  label,
+  enrollment,
+  userEnrollHandler,
+}) => {
   return (
     <Card className="Yojana-card">
       <Card.Body>
@@ -66,7 +73,12 @@ const YojanaCard = ({ yojana, yojanaClickHandler, label, enrollment }) => {
             Click here to know more{" "}
           </Button>
           {enrollment && (
-            <Button className="user-enrollment"> Yojana Enrollment</Button>
+            <YojanaEnrollment YojanaName={yojana.name} id={yojana.id} />
+
+            // <Button className="user-enrollment" onClick={userEnrollHandler}>
+            //   {" "}
+            //   Yojana Enrollment
+            // </Button>
           )}
         </Card.Footer>
       </Card.Body>

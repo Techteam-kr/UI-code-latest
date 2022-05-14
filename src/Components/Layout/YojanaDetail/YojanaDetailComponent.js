@@ -4,9 +4,11 @@ import { Button, Card, Col, div, NavLink, Row } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import BannerComponent from "../../Banner/BannerComponent";
 import YojanaCard from "../../Common/YojanaCardComponent/YojanaCard";
+import { searchYojanas } from "../../../utils/api";
 import "./YojanaDetailComponent.scss";
 const YojanaDetailComponent = () => {
   const [YojanaCategory, setYojanaCategory] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const location = useLocation();
   useEffect(() => {
     getDefaultYojana();
@@ -18,16 +20,18 @@ const YojanaDetailComponent = () => {
     let request = {
       searchValue: location.state.title,
     };
-    axios
-      .post("http://52.88.137.206:9001/searchYojanas", request)
-      .then((res) => {
-        console.log(res.data[0], "detail response");
-        setYojanaCategory(res.data[0]);
-      });
+    // axios
+    //   .post("http://52.88.137.206:9001/searchYojanas", request)
+    searchYojanas().then((res) => {
+      console.log(res.data, "detail response");
+      setYojanaCategory(res.data);
+    });
   };
 
   const yojanaClickHandler = () => {};
-
+  const userEnrollHandler = () => {
+    setShowModal(true);
+  };
   return (
     <div className="detail-container">
       <BannerComponent src="static/images/detail-image.png" />
@@ -70,6 +74,7 @@ const YojanaDetailComponent = () => {
                 yojana={YojanaCategory}
                 yojanaClickHandler={yojanaClickHandler}
                 enrollment={true}
+                userEnrollHandler={userEnrollHandler}
               />
             )}
           </div>
