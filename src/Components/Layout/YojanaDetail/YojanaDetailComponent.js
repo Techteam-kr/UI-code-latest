@@ -22,7 +22,7 @@ const YojanaDetailComponent = () => {
     };
     // axios
     //   .post("http://52.88.137.206:9001/searchYojanas", request)
-    searchYojanas().then((res) => {
+    searchYojanas(request).then((res) => {
       console.log(res.data, "detail response");
       setYojanaCategory(res.data);
     });

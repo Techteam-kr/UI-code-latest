@@ -16,6 +16,7 @@ import validator, { mobileNumber } from "./../../../utils/validator";
 import Modal from "react-bootstrap/Modal";
 import * as Yup from "yup";
 import { Button } from "react-bootstrap";
+import { yojanaForm } from "../../../utils/api";
 import "./YojanaEnrollment.scss";
 
 let changeDisplay;
@@ -406,7 +407,12 @@ export default withFormik({
     values["id"] = props.id;
 
     console.log(values, "values");
-    changeDisplay(true);
+    yojanaForm(values)
+      .then((res) => {
+        changeDisplay(true);
+      })
+      .catch((err) => {});
+
     formikProps.resetForm();
   },
 })(YojanaEnrollment);
