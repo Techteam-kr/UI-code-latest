@@ -24,7 +24,7 @@ const YojanaDetailComponent = () => {
     //   .post("http://52.88.137.206:9001/searchYojanas", request)
     searchYojanas(request).then((res) => {
       console.log(res.data, "detail response");
-      setYojanaCategory(res.data);
+      setYojanaCategory(res.data[0]);
     });
   };
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const localhost = "http://localhost:9001";
-const devserver = "http://13.126.77.244:9002";
+const devserver = "http://52.66.241.248:9002";
 
 export const getCategory = () => axios.get(devserver + "/category");
 
@@ -19,4 +19,3 @@ export const searchYojanas = (params) =>
   axios.post(devserver + "/searchYojanas", params);
 export const yojanaForm = (params) =>
   axios.post(devserver + "/saveform", params);
-// export const searchYojanas = () => axios.get("./data/YojanaDetail.json");
