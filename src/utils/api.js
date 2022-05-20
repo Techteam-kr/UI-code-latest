@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const localhost = "http://localhost:9001";
-const devserver = "http://13.126.77.244:9002";
+const devserver = "http://15.207.110.59:9002";
 
 export const getCategory = () => axios.get(devserver + "/category");
 
