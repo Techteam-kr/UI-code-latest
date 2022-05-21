@@ -1,7 +1,6 @@
 import "./SearchBoxComponent.scss";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import _map from "lodash/map";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { fetchYojanaNames } from "../../../utils/api";
@@ -22,14 +21,7 @@ const SearchBoxComponent = () => {
       setYojanaNames(yojanas);
     });
   };
-  const onEnter = (event) => {
-    if (event.keyCode === 13) {
-      console.log("enter clicked");
-    }
-  };
-  const onChange = (e) => {
-    console.log("on Chnage");
-  };
+
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
@@ -51,7 +43,7 @@ const SearchBoxComponent = () => {
   };
 
   const handleOnFocus = () => {
-    console.log("Focused");
+    // console.log("Focused");
   };
 
   const formatResult = (item) => {

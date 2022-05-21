@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Form as FormikForm, Field, withFormik } from "formik";
 import _map from "lodash/map";
-import _isEmpty from "lodash/isEmpty";
 import "./YojanaFilter.scss";
 import { Button, Col, Row } from "react-bootstrap";
 import { MultiSelectField, SelectField } from "../../Common/FormFikComponent";
@@ -13,18 +12,7 @@ const YojanaFilterComponent = (props) => {
   const [AgeGroup, setAgeGroup] = useState([]);
   const [Gender, setGender] = useState([]);
   const multiselectRefTracker = useRef(null);
-  const {
-    values,
-    touched,
-    errors,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    setValues,
-    setFieldValue,
-    formikProps,
-    resetForm,
-  } = props;
+  const { resetForm } = props;
   const disablilityOption = [
     { value: "no", label: "No" },
     { value: "yes", label: "Yes" },
@@ -194,11 +182,11 @@ export default withFormik({
   handleSubmit: (values, { props, ...formikProps }) => {
     const { age } = values;
     let value = age.split("-");
-    let ageLowerLimit = value[0];
-    let ageHigherLimit = value[1];
+    let ageLowerLimit = value[0] === "Above 60" ? "60" : value[0];
+    let ageHigherLimit = !value[1] ? "130" : value[1];
     let filterRequest = values;
-    filterRequest.ageLowerLimit = value[0];
-    filterRequest.ageHigherLimit = value[1] ? value[1] : "";
+    filterRequest.ageLowerLimit = ageLowerLimit;
+    filterRequest.ageHigherLimit = ageHigherLimit;
     let allEmpty = Object.keys(filterRequest).every((key) => {
       return filterRequest[key].length === 0 || filterRequest[key] === "";
     });

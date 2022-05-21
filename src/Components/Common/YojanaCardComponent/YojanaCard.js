@@ -1,13 +1,7 @@
-import { Card, div, Row, Button, Col } from "react-bootstrap";
+import { Card, Row, Button, Col } from "react-bootstrap";
 import YojanaEnrollment from "../EnrollmentComponent/YojanaEnrollment";
 import "./YojanaCard.scss";
-const YojanaCard = ({
-  yojana,
-  yojanaClickHandler,
-  label,
-  enrollment,
-  userEnrollHandler,
-}) => {
+const YojanaCard = ({ yojana, yojanaClickHandler, label, enrollment }) => {
   return (
     <Card className="Yojana-card">
       <Card.Body>
@@ -42,7 +36,7 @@ const YojanaCard = ({
                   <span className="yojana-data">{yojana.annual}</span>
                 </div>
               )}
-              {yojana.disability && (
+              {!yojana.disability.includes("No") && (
                 <div className="criteria-label">
                   <label>Disablility</label> :{" "}
                   <span className="yojana-data">{yojana.disability}</span>
@@ -74,11 +68,6 @@ const YojanaCard = ({
           </Button>
           {enrollment && (
             <YojanaEnrollment YojanaName={yojana.name} id={yojana.id} />
-
-            // <Button className="user-enrollment" onClick={userEnrollHandler}>
-            //   {" "}
-            //   Yojana Enrollment
-            // </Button>
           )}
         </Card.Footer>
       </Card.Body>
