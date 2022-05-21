@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const localhost = "http://localhost:9001";
-const devserver = "http://15.207.110.59:9002";
-
+const devserver = process.env.REACT_APP_API_KEY;
 export const getCategory = () => axios.get(devserver + "/category");
 
 export const getAgeTypes = () => axios.get("./data/Age.json");

@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@types/yup": "^0.29.13"
+    "@types/yup": "^0.29.13",
+    "dotenv": "^16.0.1"
   }
 }
