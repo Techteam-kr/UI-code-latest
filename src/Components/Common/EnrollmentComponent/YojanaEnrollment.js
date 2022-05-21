@@ -182,6 +182,16 @@ const YojanaEnrollment = ({
                 </Col>
                 <Col sm={6} xs={12}>
                   <Field
+                    className="select-field"
+                    component={TextField}
+                    name="otherReligion"
+                    label="Specify Religion"
+                    placeholder="Specify Religion"
+                    disabled={values.religion !== "Other"}
+                  />
+                </Col>
+                <Col sm={6} xs={12}>
+                  <Field
                     component={TextField}
                     placeholder="Bank Account Number"
                     name="accountNumber"
@@ -347,6 +357,7 @@ export default withFormik({
     caste = "",
     martialStatus = "",
     religion = "",
+    otherReligion = "",
     accountNumber = "",
     bankName = "",
     branchName = "",
@@ -369,6 +380,7 @@ export default withFormik({
       caste,
       martialStatus,
       religion,
+      otherReligion,
       accountNumber,
       bankName,
       branchName,
