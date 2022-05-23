@@ -182,11 +182,13 @@ export default withFormik({
   handleSubmit: (values, { props, ...formikProps }) => {
     const { age } = values;
     let value = age.split("-");
-    let ageLowerLimit = value[0] === "Above 60" ? "60" : value[0];
-    let ageHigherLimit = !value[1] ? "130" : value[1];
+    let ageLowerLimit = "";
+    let ageHigherLimit = "";
+    ageLowerLimit = value[0] === "Above 60" ? "60" : value[0];
+    ageHigherLimit = !value[1] && value[0] === "Above 60" ? "130" : value[1];
     let filterRequest = values;
     filterRequest.ageLowerLimit = ageLowerLimit;
-    filterRequest.ageHigherLimit = ageHigherLimit;
+    filterRequest.ageHigherLimit = ageHigherLimit ? ageHigherLimit : "";
     let allEmpty = Object.keys(filterRequest).every((key) => {
       return filterRequest[key].length === 0 || filterRequest[key] === "";
     });
