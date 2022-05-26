@@ -65,7 +65,7 @@ const YojanaCardComponent = ({ YojanaList }) => {
   return (
     <div className="yojana-card-component">
       <div className="yojana-card-block">
-        <PaginationEle />
+        {/* <PaginationEle /> */}
         <Row>
           {YojanaList &&
             YojanaList.map((yojana) => (

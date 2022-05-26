@@ -1,8 +1,11 @@
 @import "../../../scss/variables.scss";
 
 .modal-dialog {
-    width: 80%;
-    max-width: 80%;
+    @media screen and (min-width: 768px) {
+        width: 80%;
+        max-width: 80%;
+    }
+ 
     .col-sm-6 {
         margin: 10px 0;
     }

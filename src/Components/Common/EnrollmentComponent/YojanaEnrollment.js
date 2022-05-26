@@ -39,7 +39,11 @@ const YojanaEnrollment = ({
     resetForm();
     setShow(false);
   };
-  const handleShow = () => setShow(true);
+  const handleShow = (e, name) => {
+    if (name === "Pradhan Mantri Awas Yojana") {
+      setShow(true);
+    }
+  };
   const onSendOtp = useCallback(() => {
     setFieldValue("mobileVerified", false);
     setFieldValue("sendOtp", false);
@@ -69,7 +73,7 @@ const YojanaEnrollment = ({
       <Button
         variant="primary"
         className="user-enrollment"
-        onClick={handleShow}
+        onClick={(e) => handleShow(e, YojanaName)}
       >
         User Enrollment
       </Button>
