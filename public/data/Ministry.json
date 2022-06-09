@@ -1,0 +1,28 @@
+{
+    "ministryList": [
+        {
+            "value": "Ministry A",
+            "label": "Ministry A"
+        },
+        {
+            "value": "Ministry B",
+            "label": "Ministry B"
+        },
+        {
+            "value": "Ministry C",
+            "label": "Ministry C"
+        },
+        {
+            "value": "Ministry D",
+            "label": "Ministry D"
+        },
+        {
+            "value": "Ministry E",
+            "label": "Ministry E"
+        },
+        {
+            "value": "Ministry F",
+            "label": "Ministry F"
+        }
+    ]
+}

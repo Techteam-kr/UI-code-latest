@@ -11,15 +11,16 @@ import {
   getMartialStatus,
   getReligionType,
 } from "../../../utils/api";
-import validator, { mobileNumber } from "./../../../utils/validator";
+import validator, { mobileNumberValidation } from "./../../../utils/validator";
 
 import Modal from "react-bootstrap/Modal";
 import * as Yup from "yup";
 import { Button } from "react-bootstrap";
-import { yojanaForm } from "../../../utils/api";
+import { yojanaForm, fetchOtp, verifyOtp } from "../../../utils/api";
 import "./YojanaEnrollment.scss";
 
 let changeDisplay;
+let successMessageRes;
 const YojanaEnrollment = ({
   YojanaName,
   id,
@@ -32,7 +33,9 @@ const YojanaEnrollment = ({
   const [Gender, setGender] = useState([]);
   const [MartialStatus, setMartialStatus] = useState([]);
   const [Religion, setReligion] = useState([]);
-  const [display, setDisplay] = useState(false);
+  const [displaySuccessMessage, setDisplay] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  successMessageRes = setSuccessMessage;
   changeDisplay = setDisplay;
   const handleClose = () => {
     setDisplay(false);
@@ -45,17 +48,33 @@ const YojanaEnrollment = ({
     }
   };
   const onSendOtp = useCallback(() => {
-    setFieldValue("mobileVerified", false);
-    setFieldValue("sendOtp", false);
+    fetchOtp({ mobno: mobileNumber })
+      .then((res) => {
+        setFieldValue("sentOtp", true);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
   }, [mobileNumber]);
   const onChangeMobile = useCallback(() => {
     setFieldValue("mobileVerified", false);
     setFieldValue("otp", "");
   }, []);
+  const varifyMobileNumber = (value) => {};
   const onVerifyOtp = useCallback(() => {
-    // if (otp) {
-    // }
-    setFieldValue("mobileVerified", true);
+    if (otp) {
+      verifyOtp({ mobno: mobileNumber, otp: otp })
+        .then((res) => {
+          if (res.data) {
+            setFieldValue("mobileVerified", true);
+          } else {
+            alert("Invalid OTP");
+          }
+        })
+        .catch((err) => {
+          console.log(err, "err");
+        });
+    }
   }, [mobileNumber, otp]);
   useEffect(() => {
     getGenderTypes().then((res) => {
@@ -88,17 +107,10 @@ const YojanaEnrollment = ({
           <Modal.Title>{YojanaName} Enrollment Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {display ? (
-            <div>
-              You have successfully enrolled for {YojanaName} Please find
-              reference id <strong>"12345678"</strong>
-            </div>
+          {displaySuccessMessage ? (
+            <div>{successMessage}</div>
           ) : (
-            <FormikForm
-              className="registration-form"
-              noValidate
-              autoComplete="off"
-            >
+            <FormikForm className="registration-form" autoComplete="off">
               <Card className="">
                 <Card.Header className="">Applicant details</Card.Header>
               </Card>
@@ -288,7 +300,8 @@ const YojanaEnrollment = ({
                     placeholder="Mobile Number"
                     name="mobileNumber"
                     label="Mobile Number"
-                    disabled={mobileVerified}
+                    disabled={sentOtp}
+                    onBlur={varifyMobileNumber}
                     required
                   />
                 </Col>
@@ -296,13 +309,13 @@ const YojanaEnrollment = ({
                   <Button
                     variant="primary"
                     className="verification-button primary-orange"
-                    disabled={!mobileNumber || mobileVerified}
+                    disabled={mobileNumber.length < 10 || sentOtp}
                     onClick={onSendOtp}
                     type="button"
                   >
                     Send Verification Code
                   </Button>
-                  {values.mobileVerified && (
+                  {/* {values.mobileVerified && (
                     <Button
                       variant="primary"
                       className="change-number primary-orange"
@@ -312,7 +325,7 @@ const YojanaEnrollment = ({
                       {" "}
                       Change Mobile{" "}
                     </Button>
-                  )}
+                  )} */}
                 </Col>
                 <Col sm={6} xs={12}>
                   <Field
@@ -320,7 +333,7 @@ const YojanaEnrollment = ({
                     placeholder="Verification Code"
                     name="otp"
                     label="Verification Code"
-                    disabled={mobileVerified || !sentOtp}
+                    disabled={!sentOtp || mobileVerified}
                     onBlur={onVerifyOtp}
                     required
                   />
@@ -338,6 +351,7 @@ const YojanaEnrollment = ({
                   className="primary-orange"
                   variant="primary"
                   type="submit"
+                  disabled={!mobileVerified}
                 >
                   Enroll this Yojana
                 </Button>
@@ -415,17 +429,18 @@ export default withFormik({
     addressLineOne: Yup.string().required("Address is Required"),
     addressLineTwo: Yup.string().required("Address is Required"),
     pincode: validator.number,
-    mobileNumber: validator.mobileNumber,
+    mobileNumber: validator.mobileNumberValidation,
     aadharNumber: Yup.string().required("Aadhar Number is Required"),
   }),
   handleSubmit: (values, { props, ...formikProps }) => {
-    values["YojanaName"] = props.YojanaName;
+    values["yojanaName"] = props.YojanaName;
     values["id"] = props.id;
 
     console.log(values, "values");
     yojanaForm(values)
       .then((res) => {
         changeDisplay(true);
+        successMessageRes(res.data);
       })
       .catch((err) => {});
 

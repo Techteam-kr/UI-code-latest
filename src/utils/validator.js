@@ -9,13 +9,13 @@ export const requiredNumber = Yup.number()
   .required("Enter only Number")
   .max(100, "Invalid Age");
 export const number = Yup.number().required("Enter only Number");
-export const mobileNumber = Yup.string()
+export const mobileNumberValidation = Yup.string()
   .required("Mobile number is Required")
   .matches(regEx.phone, "Enter Valid Mobile number");
 const validator = {
   requiredNumber,
   regEx,
-  mobileNumber,
+  mobileNumberValidation,
   number,
 };
 

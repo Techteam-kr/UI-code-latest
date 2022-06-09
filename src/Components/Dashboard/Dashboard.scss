@@ -1,5 +1,101 @@
 @import "../../scss/variables.scss";
+.div-formik {
+    padding: 30px;
+    text-align: center;
+    @media screen and (max-width: 1024px) {
+      padding: 0 25px;
+    }
+    .floating-input {
+      max-width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      .form-label {
+        font-weight: 700;
+      }
 
+      .form-control {
+        box-shadow: 0px 3px 6px $box-shadow-drop;
+        border: 3px solid $active-blue;
+        border-radius: 15px;
+        opacity: 1;
+        font-weight: 700;
+        color: $active-blue;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .dropdown {
+        .dropdown-toggle {
+          color: $active-blue;
+          font-weight: 700;
+        }
+        .dropdown-menu {
+          .btn-group-sm {
+            display: none;
+          }
+          .btn-group {
+            width: 100%;
+            .actions-btn {
+              color: $white-color;
+              background-color: $active-blue;
+            }
+          }
+          .dropdown-item {
+            padding: 5px;
+            .form-check-label {
+              color: $active-blue;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    .action-field {
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      width: 105%;
+    margin-left: -2.5%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    @media screen and (min-width: 768px)  {
+      justify-content: center;
+    }
+      .primary-orange {
+        background: $orange 0% 0% no-repeat padding-box;
+        border: 1px solid $orange;
+        border-radius: 8px;
+        opacity: 1;
+        svg {
+          fill: $white-color;
+        }
+        @media screen and (max-width: 767px) {
+          width: 80%;
+        }
+      }
+      button:disabled {
+        opacity: 0.5;
+      }
+      .btn {
+        margin: 20px 30px;
+        @media screen and (max-width: 767px) {
+         margin: 10px;
+         padding: 10px;
+        }
+      }
+    }
+  }
 .chart-block {
     padding: 30px;
+    .chart-header {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .pie-chart-block {
+      max-width: 75%;
+      margin-left: 20%;
+      margin-top: -5%;
+      // margin-left: auto;
+      // margin-right: auto;
+    }
 }
