@@ -98,7 +98,7 @@ const DashboardComponent = () => {
 
   return (
     <div className="div-formik">
-      <FormikForm noValidate autoComplete="off">
+      {/* <FormikForm noValidate autoComplete="off">
         <Row>
           <Col xs={6}>
             <Card className="chart-block">
@@ -137,7 +137,7 @@ const DashboardComponent = () => {
             </Card>
           </Col>
         </Row>
-      </FormikForm>
+      </FormikForm> */}
     </div>
   );
 };
