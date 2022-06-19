@@ -21,4 +21,12 @@ export const searchYojanas = (params) =>
   axios.post(devserver + "/searchYojanas", params);
 export const yojanaForm = (params) =>
   axios.post(devserver + "/saveform", params);
+export const dashboardStatus = (params) =>
+  axios.post(devserver + "/dashboardStatus", params);
+export const searchApplicant = (params) =>
+  axios.post(devserver + "/searchApplicant", params);
+export const searchApplicantMob = (params) =>
+  axios.post(devserver + "/searchApplicantMob", params);
+export const updateApplicantion = (params) =>
+  axios.post(devserver + "/updateApplicantion", params);
 // export const searchYojanas = () => axios.get("./data/YojanaDetail.json");

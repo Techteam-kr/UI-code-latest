@@ -435,8 +435,6 @@ export default withFormik({
   handleSubmit: (values, { props, ...formikProps }) => {
     values["yojanaName"] = props.YojanaName;
     values["id"] = props.id;
-
-    console.log(values, "values");
     yojanaForm(values)
       .then((res) => {
         changeDisplay(true);

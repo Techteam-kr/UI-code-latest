@@ -18,6 +18,7 @@ export const SelectField = ({
   const ref = useRef(null);
   const isInValid = touched[name] && !_isEmpty(errors[name]);
   const value = _get(values, name, "");
+
   return (
     <Form.Group controlId={name} className={`floating-input ${className}`}>
       <Form.Label>{label}</Form.Label>

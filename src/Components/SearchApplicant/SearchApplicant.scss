@@ -1,0 +1,112 @@
+@import "../../scss/variables.scss";
+
+.search-application {
+    margin: 20px 0;
+
+    .card {
+        padding: 20px;
+
+        .no-message {
+            padding: 40px;
+            font-size: 18px;
+            font-weight: 700;
+            color: $reject-color;
+        }
+
+        .react-search-field {
+            border: none !important;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+
+            @media (min-width: 320px) and (max-width: 1024px) {
+                width: 100%;
+                margin-left: inherit;
+                margin-right: inherit;
+            }
+
+            .react-search-field-input {
+                box-shadow: 0px 3px 6px $box-shadow-drop;
+                border: 3px solid $active-blue  !important;
+                border-radius: 15px;
+                z-index: 2;
+                height: 40px !important;
+                font-size: 18px !important;
+
+                @media screen and (min-width: 320px) and (max-width: 1024px) {
+                    padding-right: 45px !important;
+                }
+            }
+
+            .react-search-field-button {
+                margin-left: -70px;
+                z-index: 3;
+                border: none !important;
+                background-color: transparent !important;
+
+                @media screen and (min-width: 320px) and (max-width: 1024px) {
+                    position: absolute;
+                    right: 28px;
+                }
+
+                svg {
+                    fill: $active-blue  !important;
+                    font-size: 28px;
+                    width: 22px;
+                    height: 34px;
+                    font-weight: 900;
+                    margin-top: -2px;
+                }
+            }
+        }
+
+        .disable-field {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .edit-block {
+            text-align: right;
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 18px;
+            color: $active-blue;
+            text-decoration: underline;
+            width: max-content;
+            cursor: pointer;
+        }
+
+        .applicant-table {
+            .status-row {
+                min-height: 40px;
+            }
+
+            // margin-top: 50px;
+            form {
+                padding: 0;
+
+                .form-label {
+                    display: none;
+                }
+
+                .floating-input {
+                    .form-control {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+
+            @media screen and (min-width: 320px) and (max-width: 1024px) {
+                // margin-top: 20px;
+            }
+        }
+
+        .verticle-table {
+            th {
+                width: 110px;
+                height: 50px;
+            }
+        }
+    }
+}
