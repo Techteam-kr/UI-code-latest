@@ -39,7 +39,9 @@ const YojanaDetailComponent = () => {
               <strong>Eligibility</strong>
               <ul>
                 {YojanaCategory &&
-                  YojanaCategory.eligibility.map((value) => <li>{value}</li>)}
+                  YojanaCategory.eligibility.map((value, index) => (
+                    <li key={index}>{value}</li>
+                  ))}
               </ul>
             </>
           )}

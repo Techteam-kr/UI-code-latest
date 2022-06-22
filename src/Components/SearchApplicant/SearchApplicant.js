@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import "./SearchApplicant.scss";
 import SearchField from "react-search-field";
 import { SelectField } from "../Common/FormFikComponent";
@@ -7,45 +7,55 @@ import {
   searchApplicant,
   searchApplicantMob,
   updateApplicantion,
+  getAllApplication,
 } from "../../utils/api";
 import Table from "react-bootstrap/Table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ExportToCSV from "../Common/ExcelDownloadComponent/ExportToCSV";
 const SearchApplicant = ({ values, updateToParent }) => {
-  const [applicantDetail, setApplicantDetail] = useState({
-    applicantId: "",
-    yojanaName: "",
-    status: "",
-  });
+  const [applicantDetail, setApplicantDetail] = useState([]);
   const [displayMessage, setDisplayMessage] = useState(false);
   const [applicantVal, setApplicantVal] = useState("");
   const { yojanaStatus } = values;
-  const [enableEdit, setEnableEdit] = useState(false);
+  const [enableEdit, setEnableEdit] = useState({
+    applicantNumber: "",
+    edit: false,
+  });
   const statusOption = [
     { label: "Accepted", value: "Accepted" },
     { label: "Rejected", value: "Rejected" },
     { label: "inProgress", value: "inProgress" },
   ];
-  const handleEditFun = () => {
-    updateApplicantion({
-      formid: applicantDetail.applicantId,
-      status: yojanaStatus,
-    }).then((res) => {
-      setEnableEdit((prevCheck) => !prevCheck);
-      onChange(applicantVal);
-      updateToParent(Math.random());
+  useEffect(() => {
+    fetchAllApplicant();
+  }, []);
+  const fetchAllApplicant = () => {
+    getAllApplication().then((res) => {
+      setApplicantDetail(res.data);
     });
   };
-  const onChange = (val) => {
+  const handleEditFun = (e, applicant, index) => {
+    setEnableEdit((prevState) => ({
+      edit: !prevState.edit,
+      applicantNumber: applicant,
+    }));
+    if (enableEdit.edit) {
+      updateApplicantion({
+        formid: applicantDetail[index].id,
+        status: yojanaStatus,
+      }).then((res) => {
+        onSubmitHandler(applicantVal);
+        updateToParent(Math.random());
+      });
+    }
+  };
+  const onSubmitHandler = (val) => {
     setApplicantVal(val);
-    setApplicantDetail({ applicantId: "", yojanaName: "", status: "" });
+    setApplicantDetail([]);
     if (val !== "" && val.length > 10) {
       searchApplicant({ searchValue: val }).then((res) => {
         if (res.data.length !== 0) {
-          setApplicantDetail({
-            applicantId: res.data[0].id,
-            yojanaName: res.data[0].yojanaName,
-            status: res.data[0].status,
-          });
+          setApplicantDetail(res.data);
           setDisplayMessage(false);
         } else {
           setDisplayMessage(true);
@@ -54,16 +64,14 @@ const SearchApplicant = ({ values, updateToParent }) => {
     } else if (val !== "") {
       searchApplicantMob({ searchValue: val }).then((res) => {
         if (res.data.length !== 0) {
-          setApplicantDetail({
-            applicantId: res.data[0].id,
-            yojanaName: res.data[0].yojanaName,
-            status: res.data[0].status,
-          });
+          setApplicantDetail(res.data);
           setDisplayMessage(false);
         } else {
           setDisplayMessage(true);
         }
       });
+    } else if (val === "") {
+      fetchAllApplicant();
     }
   };
   return (
@@ -72,52 +80,58 @@ const SearchApplicant = ({ values, updateToParent }) => {
         <h4>Search Applicant</h4>
         <SearchField
           placeholder="Enter Applicant Id or Mobile Number"
-          onEnter={onChange}
-          //   onBlur={onChange}
-          onSearchClick={onChange}
+          onEnter={onSubmitHandler}
+          onSearchClick={onSubmitHandler}
           searchText=""
-          classNames="test-class"
         />
-        {applicantDetail.applicantId ? (
+        {applicantDetail.length > 0 ? (
           <>
-            <div
-              className={
-                yojanaStatus === "" && enableEdit
-                  ? "disable-field edit-block"
-                  : "edit-block"
-              }
-              onClick={handleEditFun}
-            >
-              {enableEdit ? "Save changes" : "Edit Applicant"}
+            <div className="export-block container">
+              <ExportToCSV
+                csvData={applicantDetail}
+                fileName={applicantVal ? applicantVal : "applicants"}
+              />
             </div>
-            {window.screen.width <= 767 ? (
-              <Table
-                responsive
-                striped
-                bordered
-                hover
-                className="applicant-table verticle-table"
-              >
+
+            <Table
+              responsive
+              striped
+              bordered
+              hover
+              className="applicant-table"
+              size="sm"
+            >
+              <thead>
                 <tr>
-                  <thead>
-                    <th>Applicant ID</th>
-                  </thead>
-                  <td>{applicantDetail.applicantId}</td>
+                  <th>#</th>
+                  <th>Applicant ID</th>
+                  <th>Yojana Name</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
-                <tr>
-                  <thead>
-                    <th>Yojana Name</th>{" "}
-                  </thead>
-                  <td>{applicantDetail.yojanaName}</td>
-                </tr>
-                <tr className="status-row">
-                  <thead>
-                    <th>Status</th>
-                  </thead>
-                  <td>
-                    {enableEdit ? (
-                      <>
-                        <FormikForm noValidate autoComplete="off">
+              </thead>
+              <tbody>
+                {applicantDetail.map((applicant, index) => (
+                  <tr
+                    key={index}
+                    className={
+                      enableEdit.edit &&
+                      applicant.id !== enableEdit.applicantNumber &&
+                      "disable-field"
+                    }
+                  >
+                    <td>{index + 1}</td>
+                    <td>{applicant.id}</td>
+                    <td>{applicant.yojanaName}</td>
+                    <td>
+                      {" "}
+                      {enableEdit.edit &&
+                      applicant.id === enableEdit.applicantNumber ? (
+                        <FormikForm
+                          noValidate
+                          autoComplete="off"
+                          key={applicant.id}
+                        >
                           <Field
                             className="select-field"
                             component={SelectField}
@@ -125,33 +139,32 @@ const SearchApplicant = ({ values, updateToParent }) => {
                             placeholder="Select status"
                             options={statusOption}
                             disabled={false}
-                            // onChange={handleChange}
+                            // onSubmitHandler={handleChange}
                           />
                         </FormikForm>
-                      </>
-                    ) : (
-                      applicantDetail.status
-                    )}
-                  </td>
-                </tr>
-              </Table>
-            ) : (
-              <Table
-                responsive
-                striped
-                bordered
-                hover
-                className="applicant-table"
-              >
-                <thead>
-                  <tr>
-                    <th>Applicant ID</th>
-                    <th>Yojana Name</th>
-                    <th>Status</th>
+                      ) : (
+                        applicant.status
+                      )}
+                    </td>
+                    <td>
+                      <Button
+                        variant="primary"
+                        className={"edit-block user-enrollment"}
+                        disabled={
+                          yojanaStatus === "" &&
+                          applicant.id === enableEdit.applicantNumber
+                        }
+                        onClick={(e) => handleEditFun(e, applicant.id, index)}
+                      >
+                        {enableEdit.edit &&
+                        applicant.id === enableEdit.applicantNumber
+                          ? "Save changes"
+                          : "Edit Applicant"}
+                      </Button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
+                ))}
+                {/* <tr>
                     <td>{applicantDetail.applicantId}</td>
                     <td>{applicantDetail.yojanaName}</td>
                     <td>
@@ -166,7 +179,7 @@ const SearchApplicant = ({ values, updateToParent }) => {
                               placeholder="Select status"
                               options={statusOption}
                               disabled={false}
-                              // onChange={handleChange}
+                              // onSubmitHandler={handleChange}
                             />
                           </FormikForm>
                         </>
@@ -174,10 +187,10 @@ const SearchApplicant = ({ values, updateToParent }) => {
                         applicantDetail.status
                       )}
                     </td>
-                  </tr>
-                </tbody>
-              </Table>
-            )}
+                  </tr> */}
+              </tbody>
+            </Table>
+            {/* // )} */}
           </>
         ) : (
           <p className="no-message">

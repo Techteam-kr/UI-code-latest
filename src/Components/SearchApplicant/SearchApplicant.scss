@@ -19,7 +19,7 @@
             margin-left: auto;
             margin-right: auto;
 
-            @media (min-width: 320px) and (max-width: 1024px) {
+            @media (min-width: 320px) and (max-width: 768px) {
                 width: 100%;
                 margin-left: inherit;
                 margin-right: inherit;
@@ -44,9 +44,15 @@
                 border: none !important;
                 background-color: transparent !important;
 
-                @media screen and (min-width: 320px) and (max-width: 1024px) {
+                @media screen and (min-width: 320px) and (max-width: 767px) {
                     position: absolute;
                     right: 28px;
+                }
+
+                @media (min-width: 768px) and (max-width: 1024px) {
+                    margin-left: -40px;
+                    //CSS
+
                 }
 
                 svg {
@@ -60,6 +66,10 @@
             }
         }
 
+        .table-responsive {
+            margin-top: 20px;
+        }
+
         .disable-field {
             opacity: 0.5;
             pointer-events: none;
@@ -67,18 +77,42 @@
 
         .edit-block {
             text-align: right;
-            margin: 20px 0;
-            padding: 10px;
-            font-size: 18px;
-            color: $active-blue;
-            text-decoration: underline;
+            margin: 5px 0;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: $white-color;
             width: max-content;
             cursor: pointer;
+            background-color: $active-blue;
+        }
+
+        .export-block {
+            text-align: right;
+
+            button {
+                text-align: right;
+                margin: 15px 0;
+                padding: 5px 20px;
+                font-size: 14px;
+                color: $white-color;
+                width: max-content;
+                cursor: pointer;
+                background-color: $active-blue;
+            }
+
         }
 
         .applicant-table {
             .status-row {
                 min-height: 40px;
+            }
+
+            td {
+                vertical-align: middle;
+
+                @media screen and (max-width: 767px) {
+                    border-width: 2px;
+                }
             }
 
             // margin-top: 50px;

@@ -29,4 +29,6 @@ export const searchApplicantMob = (params) =>
   axios.post(devserver + "/searchApplicantMob", params);
 export const updateApplicantion = (params) =>
   axios.post(devserver + "/updateApplicantion", params);
+export const getAllApplication = () =>
+  axios.get(devserver + "/getAllApplicants");
 // export const searchYojanas = () => axios.get("./data/YojanaDetail.json");
