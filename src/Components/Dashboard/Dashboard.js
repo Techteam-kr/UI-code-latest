@@ -127,7 +127,7 @@ const DashboardComponent = ({ setFieldValue }) => {
       setMinistryList(res.data);
     });
 
-    dashBoardCall(name);
+    // dashBoardCall(name);
     getYojanaNamesList();
   }, []);
   useEffect(() => {
