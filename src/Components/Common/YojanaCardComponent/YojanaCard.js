@@ -7,8 +7,8 @@ const YojanaCard = ({ yojana, yojanaClickHandler, label, enrollment }) => {
       <Card.Body>
         <Card.Title>{yojana.name}</Card.Title>
         <Card.Text>
-          <h6>{label}</h6>
           <div className="criteria-block">
+            {/* <h6>{label}</h6> */}
             <Row>
               {yojana.category && (
                 <div className="criteria-label max-space">

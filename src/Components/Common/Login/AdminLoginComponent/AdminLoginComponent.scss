@@ -1,0 +1,25 @@
+@import "../../../../scss/variables.scss";
+
+.admin-login-modal {
+    .modal-dialog {
+        width: fit-content;
+
+        .password-eye {
+            float: right;
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+
+            svg {
+                opacity: 0.8;
+                font-size: 20px;
+            }
+        }
+
+        .primary-orange {
+            float: inherit;
+            background-color: $orange;
+            border: 1px solid $orange;
+        }
+    }
+}

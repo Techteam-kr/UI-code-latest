@@ -35,6 +35,10 @@ const YojanaEnrollment = ({
   const [Religion, setReligion] = useState([]);
   const [displaySuccessMessage, setDisplay] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const registringFor = [
+    { label: "Self", value: true },
+    { label: "Others", value: false },
+  ];
   successMessageRes = setSuccessMessage;
   changeDisplay = setDisplay;
   const handleClose = () => {
@@ -115,6 +119,40 @@ const YojanaEnrollment = ({
                 <Card.Header className="">Applicant details</Card.Header>
               </Card>
               <Row>
+                <Col sm={6} xs={12}>
+                  <Field
+                    className="select-field"
+                    component={SelectField}
+                    name="registringFor"
+                    label="Select"
+                    placeholder="Select"
+                    options={registringFor}
+                    disabled={false}
+                    required
+                  />
+                </Col>
+                {values.registringFor === "Others" && (
+                  <>
+                    <Col sm={6} xs={12}>
+                      <Field
+                        component={TextField}
+                        placeholder="Benificiary Name"
+                        name="benificiaryName"
+                        label="Benificiary Name"
+                        required
+                      />
+                    </Col>
+                    <Col sm={6} xs={12}>
+                      <Field
+                        component={TextField}
+                        placeholder="Benificiary Mobile"
+                        name="benificiaryMobNumber"
+                        label="Benificiary Mobile Number"
+                        required
+                      />
+                    </Col>
+                  </>
+                )}
                 <Col sm={6} xs={12}>
                   <Field
                     component={TextField}
@@ -367,6 +405,9 @@ const YojanaEnrollment = ({
 
 export default withFormik({
   mapPropsToValues: ({
+    registringFor = "",
+    benificiaryName = "",
+    benificiaryMobNumber = "",
     wardNumber = "",
     fullName = "",
     gaurdianName = "",
@@ -390,6 +431,9 @@ export default withFormik({
     yojananName = "",
   }) => {
     return {
+      registringFor,
+      benificiaryName,
+      benificiaryMobNumber,
       wardNumber,
       fullName,
       gaurdianName,
@@ -415,6 +459,17 @@ export default withFormik({
     };
   },
   validationSchema: Yup.object().shape({
+    registringFor: Yup.string().required("Field is required"),
+    benificiaryName: Yup.string().when("registringFor", {
+      is: (registringFor) => registringFor === "Others",
+      then: Yup.string().required("Field is required"),
+      otherwise: Yup.string(),
+    }),
+    benificiaryMobNumber: Yup.string().when("registringFor", {
+      is: (registringFor) => registringFor === "Others",
+      then: Yup.string().required("Field is required"),
+      otherwise: Yup.string(),
+    }),
     wardNumber: Yup.string().required("Ward Number Required"),
     fullName: Yup.string().required("Name Required"),
     gaurdianName: Yup.string().required("Gaurdian Name Required"),

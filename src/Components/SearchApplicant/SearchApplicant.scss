@@ -11,6 +11,10 @@
             font-size: 18px;
             font-weight: 700;
             color: $reject-color;
+
+            @media (min-width: 320px) and (max-width: 768px) {
+                padding: 20px 10px;
+            }
         }
 
         .react-search-field {
@@ -103,15 +107,86 @@
         }
 
         .applicant-table {
+            border: 0px;
+            background-color: transparent;
+            border-collapse: unset;
+
+            thead {
+                height: 78px;
+
+                th {
+                    color: $white-color;
+                    background-color: $active-blue;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+
+                th:first-child {
+                    border-top-left-radius: 16px;
+                    border-bottom-left-radius: 16px;
+                }
+
+                th:last-child {
+                    border-top-right-radius: 16px;
+                    border-bottom-right-radius: 16px;
+                }
+            }
+
             .status-row {
                 min-height: 40px;
             }
 
             td {
                 vertical-align: middle;
+                text-align: center;
 
                 @media screen and (max-width: 767px) {
                     border-width: 2px;
+                }
+            }
+
+            .status-block {
+                font-size: 12px;
+                font-weight: 700;
+
+                .floating-input {
+                    position: relative;
+                    // width: 80%;
+                    // max-width: 80%;
+
+                    svg {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                    }
+                }
+
+                span {
+                    min-width: 80%;
+                    display: inline-block;
+                    height: 28px;
+                }
+
+                .reject {
+                    padding: 5px;
+                    background-color: $reject-color;
+                    border-radius: 16px;
+                    color: $white-color;
+                }
+
+                .progress {
+                    padding: 5px;
+                    background-color: $inprogress-color;
+                    border-radius: 16px;
+                    color: $white-color;
+                }
+
+                .applied,
+                .accepted {
+                    padding: 5px;
+                    background-color: $dark-green-color;
+                    border-radius: 16px;
+                    color: $white-color;
                 }
             }
 

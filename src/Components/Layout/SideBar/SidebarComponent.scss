@@ -1,4 +1,5 @@
 @import "../../../scss/variables.scss";
+
 .sidenav {
   height: 100%;
   width: 0;
@@ -11,10 +12,12 @@
   transition: 0.5s;
   padding-top: 60px;
 }
+
 .open-side-nav {
   width: 300px;
   box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.14);
 }
+
 .sidenav a {
   margin: 0 10px;
   padding: 8px 8px 8px 32px;
@@ -38,21 +41,40 @@
   font-size: 50px;
   margin-left: 50px;
 }
+
 .hambergur-menu {
   font-size: 45px;
-  padding: 20px;
+  padding: 20px 10px 20px 10px;
 }
-.primary-orange {
-  background-color: $active-blue;
-  border: 1px solid $active-blue;
-  padding: 5px 30px;
-  border-radius: 16px;
-  box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.14);
+
+.action-block {
+  display: inline-block;
+  display: flex;
   float: right;
-  margin: 20px;
+
+  .primary-orange {
+    background-color: $active-blue;
+    border: 1px solid $active-blue;
+    padding: 5px 30px;
+    border-radius: 16px;
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.14);
+    float: right;
+    margin: 20px;
+
+    @media screen and (max-width: 480px) {
+      padding: 5px 15px;
+      margin: 20px 5px;
+    }
+  }
+
+  button {
+    margin-left: 0;
+  }
 }
+
 .logo-block {
   display: inline;
+
   .logo-img {
     height: 60px;
     width: 70px;
@@ -63,10 +85,15 @@
   }
 }
 
+.login-block {
+  display: inline-block;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
   }
+
   .sidenav a {
     font-size: 18px;
   }

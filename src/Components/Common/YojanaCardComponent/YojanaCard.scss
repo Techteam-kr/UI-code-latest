@@ -1,109 +1,128 @@
 @import "../../../scss/variables.scss";
+
 .Yojana-card {
-    // max-width: 850px;
-    min-width: 450px;
-    height: 270px;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 25px;
-    border: 3px solid $active-blue;
-    box-shadow: 0px 2px 5px 2px $box-shadow-drop;
-    @media screen and (max-width: 1024px) {
-      height: max-content;
-    }
-    @media screen and (max-width: 767px) {
-      min-width: 100%;
-      padding: 0;
-    }
-    .criteria-block {
-      .criteria-label {
-          width: max-content;
-        @media screen and (min-width: 1280px) {
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-        }
-        @media screen and (max-width: 767px) {
-          width: 45%;
-        }
-        label {
-          font-weight: 400;
-          font-size: 12px;
-          font-weight: 500;
-        }
-        .yojana-data {
-          font-size: 12px;
-          color: $active-blue;
-          font-weight: 700;
-        }
-        .yojana-desc {
-          padding-top: 10px;
-          overflow: hidden;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          white-space: normal;
-          line-height: 24px;
-          @media screen and (max-width: 767px) {
-            -webkit-line-clamp: initial;
-            -webkit-box-orient: initial;
-            white-space: initial;
-          }
-          label {
-            font-size: 12px;
-            font-weight: 700;
-            color: $dark-color;
-          }
-        }
+  // max-width: 850px;
+  min-width: 450px;
+  height: 270px;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 25px;
+  border: 3px solid $active-blue;
+  box-shadow: 0px 2px 5px 2px $box-shadow-drop;
+  text-align: center;
+
+  @media screen and (max-width: 1024px) {
+    height: max-content;
+  }
+
+  @media screen and (max-width: 767px) {
+    min-width: 100%;
+    padding: 0;
+  }
+
+  .criteria-block {
+    .criteria-label {
+      width: max-content;
+
+      @media screen and (min-width: 1280px) {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
-      .full-width {
+
+      @media screen and (max-width: 767px) {
+        width: 45%;
+      }
+
+      label {
+        font-weight: 400;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .yojana-data {
+        font-size: 12px;
+        color: $active-blue;
+        font-weight: 700;
+      }
+
+      .yojana-desc {
+        padding-top: 10px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        line-height: 24px;
+
         @media screen and (max-width: 767px) {
-          width: 100%;
+          -webkit-line-clamp: initial;
+          -webkit-box-orient: initial;
+          white-space: initial;
+        }
+
+        label {
+          font-size: 12px;
+          font-weight: 700;
+          color: $dark-color;
         }
       }
     }
 
-    .card-footer {
-      text-align: center;
-      background-color: transparent;
-      .navigate-yojana {
-        background-color: $orange;
-        border: 1px solid $orange;
-        width: 60%;
-        font-size: 14px;
-        font-weight: 700;
-        @media screen and (max-width: 767px) {
-          width: 90%;
-        }
-      }
-      .navigate-yojana::after {
-        content: " \003E";
-        color: $white-color;
-        padding-left: 10px;
-        font-weight: 900;
+    .full-width {
+      @media screen and (max-width: 767px) {
+        width: 100%;
       }
     }
-    .user-enrollment {
-        border-radius: 16px;
-        background-color: $green-color;
-        border: 1px solid $green-color;
-        box-shadow: 0px 2px 5px 2px $box-shadow-drop;
-        font-weight: 700;
-       margin-left: 20px;
-       font-size: 14px;
-       padding: 5px 20px; 
-       @media screen and (max-width: 767px) {
-           margin: 0;
-           display: block;
-           margin-left: auto;
-           margin-right: auto;
-           margin-top: 20px;
-       }
-      }
-      .user-enrollment::after {
-        content: " \003E";
-        color: $white-color;
-        padding-left: 10px;
-        font-weight: 900;
-      }
   }
+
+  .card-footer {
+    text-align: center;
+    background-color: transparent;
+
+    .navigate-yojana {
+      background-color: $orange;
+      border: 1px solid $orange;
+      width: 60%;
+      font-size: 14px;
+      font-weight: 700;
+
+      @media screen and (max-width: 767px) {
+        width: 90%;
+      }
+    }
+
+    .navigate-yojana::after {
+      content: " \003E";
+      color: $white-color;
+      padding-left: 10px;
+      font-weight: 900;
+    }
+  }
+
+  .user-enrollment {
+    border-radius: 16px;
+    background-color: $green-color;
+    border: 1px solid $green-color;
+    box-shadow: 0px 2px 5px 2px $box-shadow-drop;
+    font-weight: 700;
+    margin-left: 20px;
+    font-size: 14px;
+    padding: 5px 20px;
+
+    @media screen and (max-width: 767px) {
+      margin: 0;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+    }
+  }
+
+  .user-enrollment::after {
+    content: " \003E";
+    color: $white-color;
+    padding-left: 10px;
+    font-weight: 900;
+  }
+}

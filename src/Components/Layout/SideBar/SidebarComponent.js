@@ -2,8 +2,9 @@ import react, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import SVG from "react-inlinesvg";
+import LoginComponent from "../../Common/Login/LoginComponent/LoginComponent";
 import "./SidebarComponent.scss";
-const SideBarComponent = ({ navigateToHome }) => {
+const SideBarComponent = ({ navigateToHome, admin }) => {
   const [sideBarOpen, setsideBarOpen] = useState(false);
   const openMenuHandler = () => {
     setsideBarOpen((sideBarOpen) => !sideBarOpen);
@@ -20,12 +21,23 @@ const SideBarComponent = ({ navigateToHome }) => {
         <NavLink onClick={openMenuHandler} to="/">
           Home
         </NavLink>
-        <NavLink onClick={openMenuHandler} to="/dashboard">
-          Dashboard
-        </NavLink>
-        <NavLink onClick={openMenuHandler} to="/reports">
-          Reports
-        </NavLink>
+        {admin ? (
+          <>
+            <NavLink onClick={openMenuHandler} to="/dashboard">
+              Dashboard
+            </NavLink>
+            <NavLink onClick={openMenuHandler} to="/reports">
+              Reports
+            </NavLink>
+          </>
+        ) : (
+          <li>
+            {" "}
+            <NavLink onClick={openMenuHandler} to="/my-account">
+              My Account
+            </NavLink>
+          </li>
+        )}
       </div>
       <span className="hambergur-menu" onClick={openMenuHandler}>
         &#9776;{" "}
@@ -42,12 +54,15 @@ const SideBarComponent = ({ navigateToHome }) => {
           alt="logo"
         />
       </span>
-      <Button className="primary-orange">
-        <SVG
-          cacheRequests={true}
-          src={`/static/svg/person_add_alt_white_24dp.svg`}
-        />
-      </Button>
+      <div className="action-block">
+        {/* <Button className="primary-orange">
+          <SVG
+            cacheRequests={true}
+            src={`/static/svg/person_add_alt_white_24dp.svg`}
+          />
+        </Button> */}
+        {admin && <LoginComponent />}
+      </div>
     </>
   );
 };

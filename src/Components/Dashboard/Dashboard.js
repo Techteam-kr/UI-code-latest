@@ -86,16 +86,20 @@ const DashboardComponent = ({ setFieldValue }) => {
         var text = "",
           textX = Math.round((width - ctx.measureText(text).width) / 2),
           textY =
-            screenWidth >= 1280
+            screenWidth >= 1440
               ? height / 2
+              : screenWidth >= 1025 && screenWidth < 1440
+              ? height / 2.4
               : screenWidth >= 320 && screenWidth <= 1024
               ? height / 2.6
               : height / 2;
         ctx.beginPath();
         if (screenWidth >= 1440) {
           ctx.arc(textX - 0, textY, 220, 0, 2 * Math.PI);
-        } else if (screenWidth >= 1280 && screenWidth < 1440) {
-          ctx.arc(textX - 0, textY, 200, 0, 2 * Math.PI);
+        } else if (screenWidth > 1280 && screenWidth < 1440) {
+          ctx.arc(textX - 0, textY, 170, 0, 2 * Math.PI);
+        } else if (screenWidth > 1024 && screenWidth <= 1280) {
+          ctx.arc(textX, textY, 110, 0, 2 * Math.PI);
         } else if (screenWidth >= 320 && screenWidth <= 1024) {
           ctx.arc(textX, textY, 60, 0, 2 * Math.PI);
         }

@@ -31,4 +31,8 @@ export const updateApplicantion = (params) =>
   axios.post(devserver + "/updateApplicantion", params);
 export const getAllApplication = () =>
   axios.get(devserver + "/getAllApplicants");
+export const adminlogin = (params) =>
+  axios.post(devserver + "/adminlogin", params);
+export const searchForms = (params) =>
+  axios.post(devserver + "/searchForms", params);
 // export const searchYojanas = () => axios.get("./data/YojanaDetail.json");

@@ -4,7 +4,7 @@ import BannerComponent from "../../Banner/BannerComponent";
 import YojanaCardComponent from "../../Common/YojanaCardComponent/YojanaCardComponent";
 import YojanaFilterComponent from "../YojanaFilter/YojanaFilter";
 import "./HomeComponent.scss";
-const HomeComponent = () => {
+const HomeComponent = ({ isAdmin }) => {
   const [YojanaList, setYojanaList] = useState([]);
 
   const getDefaultYojana = (params) => {

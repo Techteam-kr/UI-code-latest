@@ -1,0 +1,98 @@
+@import "../../../../scss/variables.scss";
+
+.login-link {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: $active-blue;
+    border: 1px solid $active-blue;
+    padding: 5px 30px;
+    border-radius: 16px;
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.14);
+    float: right;
+    margin: 26px;
+
+    svg {
+        fill: $white-color;
+        margin-right: 5px;
+
+    }
+}
+
+.login-header {
+    width: max-content;
+    margin-top: 20px;
+    padding-top: 10px;
+
+    ul {
+        display: flex;
+        padding: 0;
+
+        li {
+            color: $dark-color;
+
+            i {
+                font-weight: 700;
+            }
+
+            span {
+                color: $active-blue;
+                padding-left: 5px;
+                font-weight: 700;
+
+                svg {
+                    fill: $active-blue;
+                    // cursor: pointer;
+                }
+
+            }
+
+            .logout-link {
+                cursor: pointer;
+            }
+        }
+
+    }
+}
+
+.login-modal {
+
+    @media screen and (min-width: 768px) {
+        width: max-content;
+        right: 0;
+        left: auto;
+        top: 40px;
+        min-width: 420px;
+
+        .modal-dialog {
+            .modal-header {
+
+                // background-color: $active-blue;
+                .modal-title {
+                    text-align: center;
+                    font-size: 18px;
+                    // color: $white-color;
+                }
+            }
+
+
+            .verification-button:disabled {
+                background-color: $reject-color;
+                border: 1px solid $reject-color;
+            }
+
+            .primary-orange {
+                float: inherit;
+                background-color: $orange;
+                border: 1px solid $orange;
+            }
+
+            .verification-button {
+                float: left;
+                margin: 0;
+                margin-top: 32px;
+                background-color: $green-color;
+                border: 1px solid $green-color;
+            }
+        }
+    }
+}

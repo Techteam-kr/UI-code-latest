@@ -1,10 +1,11 @@
 @import "/src/scss/variables.scss";
+
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif, system-ui;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $background-grey !important;
+  background-color: $background-grey  !important;
   height: 100vh;
 }
 
@@ -19,6 +20,7 @@ code {
   border-radius: 28px;
   opacity: 1;
 }
+
 // .primary-orange::after {
 //   content: " \003E";
 //   color: $white-color;
@@ -29,3 +31,9 @@ code {
   box-shadow: 0px 3px 6px $box-shadow-drop;
 }
 
+.arrow-down {
+  position: absolute;
+  right: 15px;
+  top: 40px;
+  fill: #000080;
+}

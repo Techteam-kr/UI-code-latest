@@ -27,26 +27,26 @@ export const TextField = ({
     // handlerBlur(e);
     others.onBlur && others.onBlur(e);
   };
-  if (type === "password") {
-    return (
-      <PasswordField
-        ref={ref}
-        name={name}
-        label={label}
-        value={value}
-        error={error}
-        helper={helper}
-        onBlur={onBlur}
-        others={others}
-        fieldAs={fieldAs}
-        required={required}
-        className={className}
-        isInValid={isInValid}
-        onLabelClick={onLabelClick}
-        handleChange={handleChange}
-      />
-    );
-  }
+  // if (type === "password") {
+  //   return (
+  //     <PasswordField
+  //       ref={ref}
+  //       name={name}
+  //       label={label}
+  //       value={value}
+  //       error={error}
+  //       helper={helper}
+  //       onBlur={onBlur}
+  //       others={others}
+  //       fieldAs={fieldAs}
+  //       required={required}
+  //       className={className}
+  //       isInValid={isInValid}
+  //       onLabelClick={onLabelClick}
+  //       handleChange={handleChange}
+  //     />
+  //   );
+  // }
   return (
     <Form.Group controlId={name} className={`form-input ${className}`}>
       <Form.Label onClick={onLabelClick}>
@@ -69,58 +69,59 @@ export const TextField = ({
   );
 };
 
-const PasswordField = ({
-  ref,
-  name,
-  label,
-  value,
-  error,
-  helper,
-  onBlur,
-  others,
-  fieldAs,
-  required,
-  className,
-  isInValid,
-  onLabelClick,
-  handleChange,
-}) => {
-  const [type, setType] = useState("password");
-  const onToggleView = () => {
-    setType((type) => (type === "password" ? "text" : "password"));
-    ref?.current.focus();
-  };
-  return (
-    <Form.Group
-      controlId={name}
-      className={`form-input password-field ${className}`}
-    >
-      <Form.Label onClick={onLabelClick}>
-        {label} {required && "*"}
-      </Form.Label>
-      <Form.Control
-        as={fieldAs}
-        type={type}
-        isInvalid={isInValid}
-        ref={ref}
-        value={value}
-        autoComplete="off"
-        {...others}
-        onChange={handleChange}
-        onBlur={onBlur}
-      />
-      <span className="password-eye" onClick={onToggleView}>
-        <SVG
-          cacheRequests={true}
-          src={
-            type === "password"
-              ? `/static/svg/visibility.svg`
-              : `/static/svg/visibility_off.svg`
-          }
-        />{" "}
-      </span>
-      <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
-      <Form.Text className="text-muted">{helper}</Form.Text>
-    </Form.Group>
-  );
-};
+// export const PasswordField = ({
+//   ref,
+//   name,
+//   label,
+//   value,
+//   error,
+//   helper,
+//   onBlur,
+//   others,
+//   fieldAs,
+//   required,
+//   className,
+//   isInValid,
+//   onLabelClick,
+//   handleChange,
+// }) => {
+//   const [type, setType] = useState("password");
+//   const onToggleView = () => {
+//     setType((type) => (type === "password" ? "text" : "password"));
+//     ref?.current.focus();
+//   };
+//   return (
+//     <Form.Group
+//       controlId={name}
+//       className={`form-input password-field ${className}`}
+//     >
+//       <Form.Label onClick={onLabelClick}>
+//         {label} {required && "*"}
+//       </Form.Label>
+//       <Form.Control
+//         as={fieldAs}
+//         type={type}
+//         isInvalid={isInValid}
+//         ref={ref}
+//         value={value}
+//         autoComplete="off"
+//         {...others}
+//         onChange={handleChange}
+//         onBlur={onBlur}
+//         placeholder="Password"
+//       />
+//       <span className="password-eye" onClick={onToggleView}>
+//         <SVG
+//           cacheRequests={true}
+//           src={
+//             type === "password"
+//               ? `/static/svg/visibility.svg`
+//               : `/static/svg/visibility_off.svg`
+//           }
+//         />{" "}
+//       </span>
+//       <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+//       <Form.Text className="text-muted">{helper}</Form.Text>
+//     </Form.Group>
+//   );
+// };

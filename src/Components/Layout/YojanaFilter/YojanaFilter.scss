@@ -4,19 +4,24 @@
   background-color: $white-color;
   border-radius: 16px;
   text-align: center;
+
   h3 {
     font-size: 35px;
     line-height: 47px;
     color: $active-blue;
   }
+
   .div-formik {
     padding: 0 70px;
+
     @media screen and (max-width: 1024px) {
       padding: 0 25px;
     }
+
     .floating-input {
       text-align: left;
       max-width: 100%;
+
       .form-label {
         font-weight: 700;
       }
@@ -29,25 +34,32 @@
         font-weight: 700;
         color: $active-blue;
         font-size: 14px;
+        height: 40px;
       }
+
       .dropdown {
         .dropdown-toggle {
           color: $active-blue;
           font-weight: 700;
         }
+
         .dropdown-menu {
           .btn-group-sm {
             display: none;
           }
+
           .btn-group {
             width: 100%;
+
             .actions-btn {
               color: $white-color;
               background-color: $active-blue;
             }
           }
+
           .dropdown-item {
             padding: 5px;
+
             .form-check-label {
               color: $active-blue;
               text-decoration: underline;
@@ -56,37 +68,45 @@
         }
       }
     }
+
     .action-field {
       text-align: center;
       display: flex;
       justify-content: space-between;
       width: 105%;
-    margin-left: -2.5%;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    @media screen and (min-width: 768px)  {
-      justify-content: center;
-    }
+      margin-left: -2.5%;
+      margin-bottom: 15px;
+      margin-top: 15px;
+
+      @media screen and (min-width: 768px) {
+        justify-content: center;
+      }
+
       .primary-orange {
         background: $orange 0% 0% no-repeat padding-box;
         border: 1px solid $orange;
         border-radius: 8px;
         opacity: 1;
+
         svg {
           fill: $white-color;
         }
+
         @media screen and (max-width: 767px) {
           width: 80%;
         }
       }
+
       button:disabled {
         opacity: 0.5;
       }
+
       .btn {
         margin: 20px 30px;
+
         @media screen and (max-width: 767px) {
-         margin: 10px;
-         padding: 10px;
+          margin: 10px;
+          padding: 10px;
         }
       }
     }

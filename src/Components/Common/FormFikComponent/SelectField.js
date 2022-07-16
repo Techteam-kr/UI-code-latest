@@ -4,6 +4,7 @@ import _isEmpty from "lodash/isEmpty";
 import Form from "react-bootstrap/Form";
 import Overlay from "react-bootstrap/Overlay";
 import Tooltip from "react-bootstrap/Tooltip";
+import SVG from "react-inlinesvg";
 
 export const SelectField = ({
   label,
@@ -47,6 +48,11 @@ export const SelectField = ({
           </Tooltip>
         )}
       </Overlay>
+      <SVG
+        cacheRequests={true}
+        className="arrow-down"
+        src={`/static/svg/keyboard_arrow_down.svg`}
+      />
     </Form.Group>
   );
 };

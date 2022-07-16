@@ -1,4 +1,5 @@
 @import "../../../scss/variables.scss";
+
 header {
   position: sticky;
   top: 0;
@@ -6,44 +7,53 @@ header {
   background: $white-color;
   z-index: 999;
   height: 80px;
+
   .navigation {
     display: flex;
     justify-content: space-between;
     margin: 0px auto;
-    width: 75vw;
+    width: 80vw;
     height: 80px;
+
     @media screen and (max-width: 1024px) {
-      width: 85vw;
+      width: 90vw;
     }
+
     .logo-block {
       display: flex;
+
       .logo-img {
         background-color: $background-grey;
         width: max-content;
         display: inline-block;
         cursor: pointer;
-        margin-left:5px ;
-        margin-right:5px ;
+        margin-left: 5px;
+        margin-right: 5px;
       }
     }
-   
-    > nav {
+
+    >nav {
       margin-top: 20px;
       width: 100%;
+
       @media screen and (min-width: 768px) and (max-width: 1024px) {
         .list-n {
           width: 110%;
         }
-        
+
       }
     }
+
     .cart-login-container {
       position: relative;
     }
   }
+
   nav {
     display: inline-block;
+
     .list-n {
+
       // padding: 10px;
       // padding-left: revert;
       // display: fl;
@@ -52,15 +62,18 @@ header {
         margin: 0px;
         display: inline-block;
         font-size: $regular-font-size;
+
         a {
           text-decoration: none;
           color: $font-grey;
           font-weight: 500;
         }
+
         a.active {
           color: $active-blue;
           border-bottom: 3px solid;
         }
+
         a::after {
           content: "";
           display: block;
@@ -69,10 +82,12 @@ header {
           background: $active-blue;
           transition: width 0.3s;
         }
+
         a:hover::after {
           width: 100%;
           //transition: width .3s;
         }
+
         .primary-orange {
           background: $active-blue 0% 0% no-repeat padding-box;
           border: 1px solid $active-blue;
@@ -80,53 +95,64 @@ header {
           opacity: 1;
           margin: 10px;
         }
+
         .primary-orange::after {
           content: " \003E";
           color: $white-color;
           padding-left: 10px;
           font-weight: 900;
         }
+
         .primary-orange:hover {
           box-shadow: 0px 3px 6px $box-shadow-drop;
         }
       }
+
       li:hover {
         a {
           color: $active-blue;
         }
       }
+
       li:last-child {
         a:hover::after {
           width: 0;
         }
       }
+
       .enrollment-block {
         a {
           display: inline-flex;
 
         }
       }
+
       .primary-orange-block {
         a:hover {
           border-bottom: 0;
         }
+
         a:hover::after {
           width: 0%;
         }
       }
+
       button {
         border: none;
         background: $white-color;
         font-size: $regular-font-size;
       }
     }
+
     .list-h {
       padding: 0px;
+
       li {
         display: inline-block;
         padding: 0px 5px;
         margin: 0px;
       }
+
       button {
         border: none;
         background: $white-color;
