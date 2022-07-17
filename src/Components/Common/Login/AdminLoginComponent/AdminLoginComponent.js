@@ -24,7 +24,7 @@ const AdminLoginComponent = ({ values, setAdmin }) => {
       // state: { yojanaId: yojana.id, title: yojana.name },
     });
   };
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
   return (
     <>
       <Modal

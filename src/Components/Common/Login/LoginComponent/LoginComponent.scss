@@ -74,6 +74,10 @@
                 }
             }
 
+            .verification-button {
+                background-color: $reject-color;
+                border: 1px solid $reject-color;
+            }
 
             .verification-button:disabled {
                 background-color: $reject-color;
@@ -94,5 +98,10 @@
                 border: 1px solid $green-color;
             }
         }
+    }
+
+    .modal-dialog .verification-button:disabled,
+    .modal-dialog .verification-button {
+        margin-top: 32px;
     }
 }

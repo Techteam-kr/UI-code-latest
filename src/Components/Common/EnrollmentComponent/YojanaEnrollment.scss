@@ -5,22 +5,49 @@
         width: 80%;
         max-width: 80%;
     }
- 
+
     .col-sm-6 {
         margin: 10px 0;
     }
-    .verification-button {
-        float: left;
-        margin: 0;
-        margin-top: 32px;
-    }
+
+
+
     .verification-button:disabled {
         background-color: $green-color;
         border: 1px solid $green-color;
     }
+
+    .primary-orange {
+        background-color: $orange;
+        border: 1px solid $orange;
+    }
+
+    .verification-button {
+        float: left;
+        margin: 0;
+        margin-top: 32px;
+        background-color: $green-color;
+        border: 1px solid $green-color;
+
+        @media screen and (max-width: 768px) {
+            margin-top: 0px;
+        }
+    }
+
     .action-block {
         padding: 20px;
         text-align: center;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+            justify-content: space-evenly;
+        }
+
+        .close-form {
+            margin: 20px 5px;
+            height: max-content;
+        }
+
         .primary-orange {
             float: inherit;
             background-color: $orange;

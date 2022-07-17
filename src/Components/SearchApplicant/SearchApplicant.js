@@ -9,10 +9,11 @@ import {
   updateApplicantion,
   getAllApplication,
 } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import { useState, useEffect } from "react";
 import ExportToCSV from "../Common/ExcelDownloadComponent/ExportToCSV";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 const SearchApplicant = ({
   values,
   updateToParent,
@@ -23,7 +24,6 @@ const SearchApplicant = ({
   onSubmitForm,
   reSubmit,
 }) => {
-  const navigator = useNavigate();
   const [admin, setAdmin] = useState(false);
   const [applicantsList, setApplicantsList] = useState(applications);
   const [displayMessage, setDisplayMessage] = useState(false);
@@ -42,18 +42,19 @@ const SearchApplicant = ({
   ];
   useEffect(() => {
     setApplicantsList(applications);
-    console.log(reSubmit, "filterChange");
   }, [filterChange, reSubmit]);
   useEffect(() => {
-    let isAdmin = window.sessionStorage.getItem("Admin");
-    if (isAdmin) {
-      isAdmin = JSON.parse(isAdmin);
-      setAdmin(isAdmin.isAdmin);
-      fetchAllApplicant();
-    }
-    if (admin) {
-      fetchAllApplicant();
-    }
+    setTimeout(() => {
+      let isAdmin = window.sessionStorage.getItem("Admin");
+      if (isAdmin) {
+        isAdmin = JSON.parse(isAdmin);
+        setAdmin(isAdmin.isAdmin);
+        return fetchAllApplicant();
+      }
+      if (admin) {
+        fetchAllApplicant();
+      }
+    });
   }, [admin]);
   useEffect(() => {
     fetchOnlyUserDetail();
@@ -89,12 +90,11 @@ const SearchApplicant = ({
     if (enableEdit.edit) {
       updateApplicantion({
         formid: applicantsList[index].id,
-        status: yojanaStatus,
+        status: yojanaStatus === "In Progress" ? "inProgress" : yojanaStatus,
         description: description,
       }).then((res) => {
         onSubmitHandler(applicantVal);
         pageType !== "reports" && updateToParent(Math.random());
-        console.log(applications, "applications");
       });
     }
   };
@@ -205,7 +205,9 @@ const SearchApplicant = ({
                               : "accepted"
                           }
                         >
-                          {applicant.status}{" "}
+                          {applicant.status === "inProgress"
+                            ? "In Progress"
+                            : applicant.status}{" "}
                         </span>
                       )}
                     </td>
@@ -217,7 +219,8 @@ const SearchApplicant = ({
                           disabled={
                             (yojanaStatus === "" &&
                               applicant.id === enableEdit.applicantNumber) ||
-                            (enableEdit.edit && description === "")
+                            (enableEdit.edit && description === "") ||
+                            (enableEdit.edit && !description)
                           }
                           onClick={(e) => handleEditFun(e, applicant, index)}
                         >
@@ -228,7 +231,7 @@ const SearchApplicant = ({
                         </Button>
                       </td>
                     )}
-                    <td>
+                    <td className="desc-status">
                       {enableEdit.edit &&
                       applicant.id === enableEdit.applicantNumber ? (
                         <FormikForm
@@ -244,7 +247,41 @@ const SearchApplicant = ({
                           />
                         </FormikForm>
                       ) : (
-                        applicant?.description
+                        <>
+                          <OverlayTrigger
+                            key={index}
+                            placement={"top"}
+                            overlay={
+                              <Tooltip id={`tooltip-top`}>
+                                {applicant?.description}.
+                              </Tooltip>
+                            }
+                          >
+                            <Button variant="secondary">
+                              {applicant?.description}
+                            </Button>
+                          </OverlayTrigger>
+                        </>
+                        // <OverlayTrigger
+                        //   placement="bottom"
+                        //   overlay={
+                        //     <Tooltip id="button-tooltip-2">
+                        //       {applicant?.description}
+                        //     </Tooltip>
+                        //   }
+                        // >
+                        //   {({ ref, ...triggerHandler }) => (
+                        //     <Button
+                        //       variant="light"
+                        //       {...triggerHandler}
+                        //       className="d-inline-flex align-items-center"
+                        //     >
+                        //       <span className="ms-1">
+                        //         {applicant?.description} Hu
+                        //       </span>
+                        //     </Button>
+                        //   )}
+                        // </OverlayTrigger>
                       )}
                     </td>
                   </tr>

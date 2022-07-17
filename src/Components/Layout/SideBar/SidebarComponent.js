@@ -1,7 +1,5 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import SVG from "react-inlinesvg";
 import LoginComponent from "../../Common/Login/LoginComponent/LoginComponent";
 import "./SidebarComponent.scss";
 const SideBarComponent = ({ navigateToHome, admin }) => {
@@ -31,12 +29,12 @@ const SideBarComponent = ({ navigateToHome, admin }) => {
             </NavLink>
           </>
         ) : (
-          <li>
+          <>
             {" "}
             <NavLink onClick={openMenuHandler} to="/my-account">
               My Account
             </NavLink>
-          </li>
+          </>
         )}
       </div>
       <span className="hambergur-menu" onClick={openMenuHandler}>
@@ -61,7 +59,7 @@ const SideBarComponent = ({ navigateToHome, admin }) => {
             src={`/static/svg/person_add_alt_white_24dp.svg`}
           />
         </Button> */}
-        {admin && <LoginComponent />}
+        {<LoginComponent admin={admin} />}
       </div>
     </>
   );

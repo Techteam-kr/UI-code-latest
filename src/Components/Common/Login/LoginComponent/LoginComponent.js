@@ -9,9 +9,9 @@ import Modal from "react-bootstrap/Modal";
 import { fetchOtp, verifyOtp } from "../../../../utils/api";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import validator, { mobileNumberValidation } from "../../../../utils/validator";
+import validator from "../../../../utils/validator";
 import "./LoginComponent.scss";
-let loginDetail;
+let setLoggedIn;
 let navigator;
 const LoginComponent = ({ values, setFieldValue, admin }) => {
   navigator = useNavigate();
@@ -20,7 +20,7 @@ const LoginComponent = ({ values, setFieldValue, admin }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInAs, setloggedInAs] = useState("");
   const varifyMobileNumber = (value) => {};
-  loginDetail = setIsLoggedIn;
+  setLoggedIn = setIsLoggedIn;
   const handleClose = () => {
     setFieldValue("mobileNumber", "");
     setFieldValue("otp", "");
@@ -29,23 +29,25 @@ const LoginComponent = ({ values, setFieldValue, admin }) => {
   };
   const handleShow = () => setShow(true);
   useEffect(() => {
-    let userDetails = window.sessionStorage.getItem("user");
-    let adminDetails = window.sessionStorage.getItem("Admin");
-    let userResult = JSON.parse(userDetails);
-    let adminResult = JSON.parse(adminDetails);
-    if (userResult?.name || adminResult?.isAdmin) {
-      setIsLoggedIn(true);
-      setloggedInAs(
-        adminResult?.isAdmin
-          ? "Admin"
-          : userResult.name !== ""
-          ? userResult.name
-          : userResult?.mobileNumber
-      );
-    } else {
-      window.sessionStorage.clear();
-    }
-  }, [admin]);
+    setTimeout(() => {
+      let userDetails = window.sessionStorage.getItem("user");
+      let adminDetails = window.sessionStorage.getItem("Admin");
+      let userResult = JSON.parse(userDetails);
+      let adminResult = JSON.parse(adminDetails);
+      if (userResult?.name || adminResult?.isAdmin) {
+        setIsLoggedIn(true);
+        setloggedInAs(
+          adminResult?.isAdmin
+            ? "Admin"
+            : userResult.name !== ""
+            ? userResult.name
+            : userResult?.mobileNumber
+        );
+      } else {
+        window.sessionStorage.clear();
+      }
+    }, 100);
+  }, [admin, isLoggedIn]);
   const onSendOtp = useCallback(() => {
     fetchOtp({ mobno: mobileNumber })
       .then((res) => {
@@ -165,7 +167,7 @@ export default withFormik({
     verifyOtp({ mobno: values.mobileNumber, otp: values.otp })
       .then((res) => {
         if (res.data) {
-          loginDetail(true);
+          setLoggedIn(true);
           var user = { name: res.data.name, mobileNumber: values.mobileNumber };
           window.sessionStorage.setItem("user", JSON.stringify(user));
           var obj = JSON.parse(sessionStorage.user);

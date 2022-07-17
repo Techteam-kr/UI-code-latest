@@ -3,11 +3,11 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { SelectField } from "../Common/FormFikComponent";
 import {
-  getMinistryList,
+  // getMinistryList,
   fetchYojanaNames,
   dashboardStatus,
 } from "../../utils/api";
-import { Card, Row, Button, Col } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import _map from "lodash/map";
 import { Form as FormikForm, Field, withFormik } from "formik";
 
@@ -57,18 +57,18 @@ const options = {
     },
   },
 };
-const setTitle = (value) => {
-  return value;
-};
-const setArc = (textX, textY) => {
-  if (screenWidth <= 767) {
-    return;
-  }
-};
+// const setTitle = (value) => {
+//   return value;
+// };
+// const setArc = (textX, textY) => {
+//   if (screenWidth <= 767) {
+//     return;
+//   }
+// };
 const name = "Pradhan Mantri Awas Yojana";
 
 const DashboardComponent = ({ setFieldValue }) => {
-  const [ministryList, setMinistryList] = useState([]);
+  // const [ministryList, setMinistryList] = useState([]);
   const [yojanaNames, setYojanaNames] = useState([]);
   const [formTotalCount, setFormTotalCount] = useState(0);
   const [statusReponse, setStatusResponse] = useState({});
@@ -127,9 +127,9 @@ const DashboardComponent = ({ setFieldValue }) => {
     ],
   });
   useEffect(() => {
-    getMinistryList().then((res) => {
-      setMinistryList(res.data);
-    });
+    // getMinistryList().then((res) => {
+    //   setMinistryList(res.data);
+    // });
 
     // dashBoardCall(name);
     getYojanaNamesList();

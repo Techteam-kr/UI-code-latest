@@ -1,8 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import _get from "lodash/get";
 import _isEmpty from "lodash/isEmpty";
 import Form from "react-bootstrap/Form";
-import SVG from "react-inlinesvg";
 
 export const TextField = ({
   label,

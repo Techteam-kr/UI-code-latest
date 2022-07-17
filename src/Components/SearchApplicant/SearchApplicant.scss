@@ -141,7 +141,28 @@
                 text-align: center;
 
                 @media screen and (max-width: 767px) {
-                    border-width: 2px;
+                    min-width: 120px;
+                }
+            }
+
+            .desc-status {
+                height: 40px;
+                max-width: 140px;
+                padding: 0;
+                overflow: hidden;
+                position: relative;
+                margin: 0 5px 0 5px;
+                text-align: left;
+                text-decoration: none;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: $dark-color;
+
+                .btn-secondary {
+                    background-color: transparent;
+                    color: $dark-color;
+                    border: 0px;
+
                 }
             }
 

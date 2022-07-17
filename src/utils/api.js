@@ -1,6 +1,4 @@
 import axios from "axios";
-
-const localhost = "http://localhost:9001";
 const devserver = process.env.REACT_APP_API_KEY;
 export const getCategory = () => axios.get(devserver + "/category");
 

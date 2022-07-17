@@ -1,6 +1,6 @@
-import react, { useEffect, useState, useCallback } from "react";
-import _map from "lodash/map";
-import _lower from "lodash/lowerCase";
+import { useEffect, useState, useCallback } from "react";
+// import _map from "lodash/map";
+// import _lower from "lodash/lowerCase";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -11,7 +11,7 @@ import {
   getMartialStatus,
   getReligionType,
 } from "../../../utils/api";
-import validator, { mobileNumberValidation } from "./../../../utils/validator";
+import validator from "./../../../utils/validator";
 
 import Modal from "react-bootstrap/Modal";
 import * as Yup from "yup";

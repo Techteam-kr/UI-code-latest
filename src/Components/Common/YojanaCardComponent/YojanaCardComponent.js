@@ -1,13 +1,11 @@
-import Card from "react-bootstrap/Card";
 import "./YojanaCardComponent.scss";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import _isFunction from "lodash/isFunction";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import YojanaCard from "./YojanaCard";
 // import { Pagination } from "../Pagination/Pagination";
-import { sortBy } from "lodash";
+// import { sortBy } from "lodash";
 import Pagination from "../Pagination/Pagination";
 
 let sortByOptions = [
@@ -31,8 +29,8 @@ const YojanaCardComponent = ({ YojanaList }) => {
   let { sortBy, pageSize, activePage } = sortPaging;
 
   useEffect(() => {
-    const offset = activePage * pageSize;
-    let [sort, direction = "asc"] = sortBy;
+    // const offset = activePage * pageSize;
+    // let [sort, direction = "asc"] = sortBy;
   }, []);
 
   const yojanaClickHandler = (yojana) => {

@@ -9,18 +9,17 @@ const YojanaDetailComponent = () => {
   const [YojanaCategory, setYojanaCategory] = useState(null);
   const location = useLocation();
   useEffect(() => {
+    const getDefaultYojana = () => {
+      let request = {
+        searchValue: location.state.title,
+      };
+      searchYojanas(request).then((res) => {
+        setYojanaCategory(res.data[0]);
+      });
+    };
     getDefaultYojana();
     window.scroll({ top: 0, behavior: "smooth" });
   }, []);
-
-  const getDefaultYojana = () => {
-    let request = {
-      searchValue: location.state.title,
-    };
-    searchYojanas(request).then((res) => {
-      setYojanaCategory(res.data[0]);
-    });
-  };
 
   const yojanaClickHandler = () => {};
   // const userEnrollHandler = () => {

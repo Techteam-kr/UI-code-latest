@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import SideBarComponent from "../SideBar/SidebarComponent";
 import { useNavigate } from "react-router-dom";
-import SVG from "react-inlinesvg";
 import "./Header.scss";
 import LoginComponent from "../../Common/Login/LoginComponent/LoginComponent";
 const Header = ({ isAdmin }) => {
@@ -11,6 +9,7 @@ const Header = ({ isAdmin }) => {
   const navigateToHome = () => {
     navigator("/");
   };
+
   const [admin, setAdmin] = useState(isAdmin);
   useEffect(() => {
     // if (!isAdmin) {
@@ -79,7 +78,6 @@ const Header = ({ isAdmin }) => {
               </li> */}
             </ul>
           </nav>
-
           <LoginComponent admin={admin} />
         </div>
       )}
