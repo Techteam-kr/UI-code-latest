@@ -131,7 +131,7 @@ const SearchApplicant = ({
   return (
     <div className="search-application">
       <Card>
-        {pageType !== "reports" && (
+        {pageType !== "reports" && admin && (
           <div className="search-filter">
             <h4>Search Applicant</h4>
             <SearchField

@@ -168,7 +168,10 @@ export default withFormik({
       .then((res) => {
         if (res.data) {
           setLoggedIn(true);
-          var user = { name: res.data.name, mobileNumber: values.mobileNumber };
+          var user = {
+            name: res.data?.name ? res.data?.name : values?.mobileNumber,
+            mobileNumber: values?.mobileNumber,
+          };
           window.sessionStorage.setItem("user", JSON.stringify(user));
           var obj = JSON.parse(sessionStorage.user);
           navigator("/");
